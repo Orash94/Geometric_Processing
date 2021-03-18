@@ -19,6 +19,9 @@
 #include <igl/per_face_normals.h>
 #include <igl/triangle_triangle_adjacency.h>
 
+#define PI 3.14159265
+
+
 using namespace std;
 
 enum MouseMode { NONE, FACE_SELECT, VERTEX_SELECT, TRANSLATE, ROTATE };
@@ -44,12 +47,54 @@ bool callback_key_down(igl::opengl::glfw::Viewer& viewer, unsigned char key, int
 {
 	if (key == '1')
 	{
+        cout << endl<<endl;
+        cout << "You chose key = '1' - Vertex to Face Relations" << endl << "The relations are: " << endl << endl;
+        igl::vertex_triangle_adjacency(V, F, VF, VFi);
+        for (int i = 0; i < VF.size(); i++)
+        {
+            cout << "The face neighbors of vertex number " << i << ": ";
+            std::vector<int> adjacents = VF[i];
+            for (int j = 0; j < adjacents.size(); j++)
+            {
+                if (j == adjacents.size()-1)
+                {
+                    cout << adjacents[j];
+                }
+                else
+                {
+                    cout << adjacents[j] << ", ";
+                }
+            }
+            cout << endl;
+        }
+
+ 
 		//add your code for computing vertex to face relations here
 		//store in VF,VFi
 	}
 
 	if (key == '2')
 	{
+        cout << endl << endl;
+        cout << "You chose key = '2' - Vertex to Vertex Relations" << endl << "The relations are: " << endl << endl;
+        igl::adjacency_list(F,VV);
+        for (int i = 0; i < VV.size(); i++)
+        {
+            cout << "The vertex neighbors of vertex number " << i << ": ";
+            std::vector<int> adjacents = VV[i];
+            for (int j = 0; j < adjacents.size(); j++)
+            {
+                if (j == adjacents.size() - 1)
+                {
+                    cout << adjacents[j];
+                }
+                else
+                {
+                    cout << adjacents[j] << ", ";
+                }
+            }
+            cout << endl;
+        }
 		//add your code for computing vertex to vertex relations here
 		//store in VV
 	}
@@ -59,18 +104,79 @@ bool callback_key_down(igl::opengl::glfw::Viewer& viewer, unsigned char key, int
 		viewer.data().clear();
 		viewer.data().set_mesh(V, F);
 		colors_per_face.setZero(F.rows(),3);
+
+        igl::facet_components(F, cid);
+        igl::jet(cid, true, colors_per_face);
+
+        cout << endl << "You chose key 3 - The details of the connected components are: " << endl;
+        cout << "the number of the Connected Components is: " << cid.maxCoeff() + 1 << endl << endl;
+        int beginID = cid.minCoeff();
+        for (int i = 0; i <= cid.maxCoeff(); i++)
+        {
+            int numberOfFaces = 0;
+            for (int j = 0; j < cid.size(); j++)
+            {
+                if (cid[j] == beginID) {
+                    numberOfFaces++;
+                }
+            }
+            cout << "Connected Component number " << beginID << " has " << numberOfFaces << " faces" << endl;
+            beginID++;
+        }
 		//add your code for computing per-face connected components here
 		//store the component labels in cid
 		//compute colors for the faces based on components
 		//store the colors in component_colors_per_face
 		//set the viewer colors
 		viewer.data().set_colors(colors_per_face);
+
+
 	}
 
 	if (key == '4')
 	{
 		Eigen::MatrixXd Vout=V;
 		Eigen::MatrixXi Fout=F;
+        Eigen::MatrixXi TT, TTi;
+        Eigen::MatrixXd P, BC;
+        int numberOfAdjacents;
+        double a;
+        int count = 0;
+        igl::barycenter(V, F, BC); // BC is the Barycenter matrix in size #f,3
+        igl::adjacency_list(F, VV);
+        P.setZero(V.rows(), V.cols());
+        for (int i = 0; i < V.rows(); i++)
+        {
+            numberOfAdjacents = VV[i].size();
+            a = (4 - 2 * cos(2 * PI / double(numberOfAdjacents))) / 9;
+            for (int j = 0; j < VV[i].size(); j++)
+            {
+                P.row(i) += V.row(VV[i][j]);
+            }
+            P.row(i) /= double(numberOfAdjacents);
+            P.row(i) = a * P.row(i) + (1 - a) * V.row(i);
+        }
+        Vout.resize(P.rows() + BC.rows(), P.cols());
+        Vout << P, BC;
+        igl::triangle_triangle_adjacency(F,TT,TTi);
+        Fout.resize(F.rows() * 3, F.cols());
+        for (int i = 0; i < F.rows(); i++)
+        {
+            for (int j = 0; j < 3; j++) {
+                if (TT(i,j) == -1)
+                {
+                    Fout.row(count) << F(i, j), F(i, (j + 1) % 3), V.rows() + i;
+                    count++;
+                }
+                else if(i>TT(i,j))
+                {
+                    Fout.row(count) << F(i, j), V.rows() + TT(i, j), V.rows() + i;
+                    Fout.row(count + 1) << V.rows() + TT(i, j), F(i, (j + 1) % 3), V.rows() + i;
+                    count += 2;
+                }
+            }
+        }
+        
 		// Add your code for sqrt(3) subdivision here.
 		// Set up the viewer to display the new mesh
 		V = Vout; F = Fout;
@@ -83,7 +189,9 @@ bool callback_key_down(igl::opengl::glfw::Viewer& viewer, unsigned char key, int
 std::set<int> get_v_from_faces_idx(const Eigen::MatrixXi& F, std::set<int>& face_idx) {
     std::set<int> v_set;
     for (auto f: face_idx) {
-        v_set.insert(F(f,0)); v_set.insert(F(f,1)); v_set.insert(F(f,2));
+        v_set.insert(F(f,0)); 
+        v_set.insert(F(f,1)); 
+        v_set.insert(F(f,2));
     }
     return v_set;
 }
@@ -93,27 +201,43 @@ void extrude(igl::opengl::glfw::Viewer& viewer) {
     Eigen::MatrixXi Fout=F;
 
     // Get selected faces
-    Eigen::MatrixXi sF(selected_faces.size(),3); int idx = 0;
-    for (auto it=selected_faces.begin();it!=selected_faces.end();it++){sF.row(idx++) = F.row(*it);}
+    Eigen::MatrixXi sF(selected_faces.size(),3);
+    int idx = 0;
+    for (auto it=selected_faces.begin();it!=selected_faces.end();it++){
+        sF.row(idx++) = F.row(*it);
+    }
 
     // Assert selected faces are connected
-    Eigen::VectorXi comp; igl::facet_components(sF,comp);
-    if (comp.maxCoeff() != 0) { cout << "Error: Not a single connected component, #face_comp =  " << comp << endl; return;}
+    Eigen::VectorXi comp;
+    igl::facet_components(sF,comp);
+    if (comp.maxCoeff() != 0) { 
+        cout << "Error: Not a single connected component, #face_comp =  " << comp << endl; return;
+    }
 
     // 1) Get the boundary vertices surrounding the selected faces
     std::vector<int> bnd_loop; 
     igl::boundary_loop(sF,bnd_loop);
 
     // 2) Duplicate boundary vertices
-    Vout.resize(V.rows()+bnd_loop.size(),3);
-    for (int i = 0; i < V.rows(); i++) Vout.row(i)=V.row(i); // set vertices as old vertices
-    for (int i = 0; i < bnd_loop.size(); i++) {Vout.row(V.rows()+i) = V.row(bnd_loop[i]);} // create new vertices as duplicates of the faces boundary
+    Vout.resize(V.rows()+bnd_loop.size(),3); // (rows+boundary vertexes) X 3
+
+    for (int i = 0; i < V.rows(); i++) 
+        Vout.row(i)=V.row(i); // set vertices as old vertices
+
+    for (int i = 0; i < bnd_loop.size(); i++) {
+        Vout.row(V.rows()+i) = V.row(bnd_loop[i]);
+    } // create new vertices as duplicates of the faces boundary
 
     // 3) Compute direction T: The average of selected face normals
-    Eigen::RowVector3d T; T.setZero(); Eigen::MatrixXd FN;
+    Eigen::RowVector3d T;
+    T.setZero(); 
+    Eigen::MatrixXd FN;
     igl::per_face_normals(V,F,FN);
-    for (auto it=selected_faces.begin();it!=selected_faces.end();it++){ T += FN.row(*it);}
-    T.normalize(); T*=0.25*(V.row(bnd_loop[1])-V.row(bnd_loop[0])).norm();
+    for (auto it=selected_faces.begin();it!=selected_faces.end();it++){ 
+        T += FN.row(*it);
+    }
+    T.normalize(); 
+    T*=0.25*(V.row(bnd_loop[1])-V.row(bnd_loop[0])).norm();
 
     // 4) Offset old vertices by T
     std::set<int> inner_v = get_v_from_faces_idx(F, selected_faces);;
@@ -123,31 +247,64 @@ void extrude(igl::opengl::glfw::Viewer& viewer) {
 
     // 5) Update Fout 
     Fout.resize(F.rows()+2*bnd_loop.size(),3); // 2 new faces per new edge (= per new vertex)
-    for (int i = 0; i < F.rows(); i++) Fout.row(i)=F.row(i); // set first 'F.rows()' faces as the old faces
+    for (int i = 0; i < F.rows(); i++) {
+        Fout.row(i) = F.row(i); // set first 'F.rows()' faces as the old faces
+    }
 
     // Add your code for updating Fout here
 
     // 5.1) Get the set of faces containing the old boundary vertices (hint: call igl::vertex_triangle_adjacency on the old 'F')
+    igl::vertex_triangle_adjacency(V.rows(), F, VF, VFi);
     
     // 5.2) Get the "outer" set of faces containing the boundary vertices 
     //      (hint: call std::set_difference to compute the difference between the previously computed set of faces, and the selected faces)
+    std::set<int> adj_bnd, outerFaces;
+    for (int i = 0; i < bnd_loop.size(); i++)
+    {
+        for (int j = 0; j < VF[bnd_loop[i]].size(); j++) {
+            adj_bnd.insert(VF[bnd_loop[i]][j]);
+        }
+    }
+    std::set_difference(adj_bnd.begin(), adj_bnd.end(), selected_faces.begin(), selected_faces.end(),inserter(outerFaces, outerFaces.end()));
 
     // 5.3) Edit old outer faces indices, replacing the old vertices with the indices of the duplicated boundary vertices
+    for (auto it = outerFaces.begin(); it != outerFaces.end(); it++) {
+        for (int i = 0; i < bnd_loop.size(); i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                if (Fout.row(*it)[j] == bnd_loop[i]) {
+                    Fout.row(*it)[j] = V.rows() + i;
+                }
+            }
+        }
+    }
 
     // 5.4) Add new faces, 2 per edge
-    int f_idx = F.rows();
+    int face_index = F.rows();
     for (int i = 0; i < bnd_loop.size(); i++) {
         int v1,v2,v3,v4;
         // set v1,v2,v3,v4 correctly
-        Fout.row(f_idx++) << v1,v2,v3;
-        Fout.row(f_idx++) << v3,v4,v1;
+        v1 = V.rows() + i;
+        v2 = V.rows() + ((i + 1) % bnd_loop.size());
+        v3 = bnd_loop[(i + 1) % bnd_loop.size()];
+        v4 = bnd_loop[i];
+        Fout.row(face_index++) << v1,v2,v3;
+        Fout.row(face_index++) << v3,v4,v1;
     }
 
     // 6) Check that the new mesh is a manifold (call is_edge_manifold, is_vertex_manifold on Vout,Fout)
+    Eigen::VectorXi t1, t2;
+    igl::is_vertex_manifold(Fout, t1);
+    t2.resize(t1.rows(), t1.cols());
+    t2.setOnes(t2.rows(), t2.cols());
+    
+    if(!igl::is_edge_manifold(Fout) || t1 != t2) return;
+    
     
     // 7) Update V,F
-    //V = Vout; // uncomment for your code to take effect
-    //F = Fout; // uncomment for your code to take effect
+    V = Vout; // uncomment for your code to take effect
+    F = Fout; // uncomment for your code to take effect
 
     // Update gui and move to edit-translate mode
     colors_per_face = Eigen::MatrixXd::Ones(F.rows(),3); // number of faces has changed

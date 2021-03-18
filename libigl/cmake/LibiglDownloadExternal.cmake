@@ -50,8 +50,8 @@ endfunction()
 ## Eigen
 function(igl_download_eigen)
 	igl_download_project(eigen
-		URL           http://bitbucket.org/eigen/eigen/get/3.2.10.tar.gz
-		URL_MD5       8ad10ac703a78143a4062c9bda9d8fd3
+		GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
+		GIT_TAG        ${LIBIGL_EIGEN_VERSION}
 	)
 endfunction()
 
