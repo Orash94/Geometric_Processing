@@ -90,7 +90,25 @@ b. When the Wedland Radius is bigger than 0.1, the model becomes more rounded an
 
 
 
+Anisotropic in 3 axis:
+
+![16](photos/16.PNG)
+
+
+
+![17](photos/17.PNG)
+
+
+
+
+
+
+
 All reconstructed models (that my GPU could handle) are in the data folder under the prefix "reconstruced"
+
+
+
+
 
 4) Theory question: 
 

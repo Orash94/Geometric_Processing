@@ -34,6 +34,7 @@ double wendlandRadius = 0.1;
 
 // Parameter: grid resolution
 int resolution = 40;
+int res_x = 20; int res_y = 20; int res_z = 20;
 
 // Intermediate result: grid points, at which the imlicit function will be evaluated, #G x3
 Eigen::MatrixXd grid_points;
@@ -97,17 +98,17 @@ void createGrid() {
     Eigen::RowVector3d dim = bb_max - bb_min;
 
     // Grid spacing
-    const double dx = dim[0] / (double)(resolution - 1);
-    const double dy = dim[1] / (double)(resolution - 1);
-    const double dz = dim[2] / (double)(resolution - 1);
+    const double dx = dim[0] / (double)(res_x - 1);
+    const double dy = dim[1] / (double)(res_y - 1);
+    const double dz = dim[2] / (double)(res_z - 1);
     // 3D positions of the grid points -- see slides or marching_cubes.h for ordering
-    grid_points.resize(resolution * resolution * resolution, 3);
+    grid_points.resize(res_x * res_y * res_z, 3);
     // Create each gridpoint
-    for (unsigned int x = 0; x < resolution; ++x) {
-        for (unsigned int y = 0; y < resolution; ++y) {
-            for (unsigned int z = 0; z < resolution; ++z) {
+    for (unsigned int x = 0; x < res_x; ++x) {
+        for (unsigned int y = 0; y < res_y; ++y) {
+            for (unsigned int z = 0; z < res_z; ++z) {
                 // Linear index of the point at (x,y,z)
-                int index = x + resolution * (y + resolution * z);
+                int index = x + res_y * (y + res_z * z);
                 // 3D point at (x,y,z)
                 grid_points.row(index) = bb_min + Eigen::RowVector3d(x * dx, y * dy, z * dz);
             }
@@ -185,14 +186,14 @@ void get_close_points(Eigen::RowVector3d point, double h, std::vector<int>& resu
 }
 void evaluateImplicitFunc() {
     double newWendlandRadius = wendlandRadius * boundingBoxDiagonal;
-    grid_values.resize(resolution * resolution * resolution);
+    grid_values.resize(res_x * res_y * res_z);
 
-    for (unsigned int x = 0; x < resolution; x++) {
-        for (unsigned int y = 0; y < resolution; y++) {
-            for (unsigned int z = 0; z < resolution; z++) {
+    for (unsigned int x = 0; x < res_x; x++) {
+        for (unsigned int y = 0; y < res_y; y++) {
+            for (unsigned int z = 0; z < res_z; z++) {
                 std::vector<int> result_vec;
                 std::vector<double> d_vec;
-                int index = x + resolution * (y + resolution * z);
+                int index = x + res_x * (y + res_y * z);
                 double px = grid_points(index, 0);
                 double py = grid_points(index, 1);
                 double pz = grid_points(index, 2);
@@ -260,20 +261,20 @@ void getLines() {
     grid_lines.resize(3 * nnodes, 6);
     int numLines = 0;
 
-    for (unsigned int x = 0; x<resolution; ++x) {
-        for (unsigned int y = 0; y < resolution; ++y) {
-            for (unsigned int z = 0; z < resolution; ++z) {
-                int index = x + resolution * (y + resolution * z);
-                if (x < resolution - 1) {
-                    int index1 = (x + 1) + y * resolution + z * resolution * resolution;
+    for (unsigned int x = 0; x< res_x; ++x) {
+        for (unsigned int y = 0; y < res_y; ++y) {
+            for (unsigned int z = 0; z < res_z; ++z) {
+                int index = x + res_x * (y + res_y * z);
+                if (x < res_z - 1) {
+                    int index1 = (x + 1) + y * res_x + z * res_y * res_z;
                     grid_lines.row(numLines++) << grid_points.row(index), grid_points.row(index1);
                 }
-                if (y < resolution - 1) {
-                    int index1 = x + (y + 1) * resolution + z * resolution * resolution;
+                if (y < res_y - 1) {
+                    int index1 = x + (y + 1) * res_x + z * res_y * res_z;
                     grid_lines.row(numLines++) << grid_points.row(index), grid_points.row(index1);
                 }
-                if (z < resolution - 1) {
-                    int index1 = x + y * resolution + (z + 1) * resolution * resolution;
+                if (z < res_z - 1) {
+                    int index1 = x + y * res_x + (z + 1) * res_y * res_z;
                     grid_lines.row(numLines++) << grid_points.row(index), grid_points.row(index1);
                 }
             }
@@ -497,7 +498,7 @@ bool callback_key_down(Viewer &viewer, unsigned char key, int modifiers) {
             return true;
         }
         // Run marching cubes
-        igl::copyleft::marching_cubes(grid_values, grid_points, resolution, resolution, resolution, V, F);
+        igl::copyleft::marching_cubes(grid_values, grid_points, res_x, res_y, res_z, V, F);
         if (V.rows() == 0) {
             cerr << "Marching Cubes failed!" << endl;
             return true;
@@ -523,7 +524,7 @@ bool callback_load_mesh(Viewer& viewer,string filename)
 int main(int argc, char *argv[]) {
     if (argc != 2) {
       cout << "Usage ex2_bin <mesh.off>" << endl;
-      igl::readOFF("C:/Users/orash/Desktop/Computer Science/Geometric Processing/Project/geometryprocessing2021-Orash94/assignment2/data/luigi.off",P,F,N);
+      igl::readOFF("C:/Users/orash/Desktop/Computer Science/Geometric Processing/Project/geometryprocessing2021-Orash94/assignment2/data/bunny-1000.off",P,F,N);
     }
 	  else
 	  {
@@ -547,6 +548,9 @@ int main(int argc, char *argv[]) {
       {
         // Expose variable directly ...
         ImGui::InputInt("Resolution", &resolution, 0, 0);
+        ImGui::InputInt("Resolution X", &res_x, 0, 0);
+        ImGui::InputInt("Resolution Y", &res_y, 0, 0);
+        ImGui::InputInt("Resolution Z", &res_z, 0, 0);
         ImGui::InputInt("Polynomial Degree", &polyDegree, 0, 0);
         ImGui::InputDouble("Wedland Radius", &wendlandRadius, 0, 0);
 
