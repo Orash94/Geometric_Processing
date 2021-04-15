@@ -1,4 +1,5 @@
 #include <igl/readOFF.h>
+#include <igl/writeOFF.h>
 #include <igl/opengl/glfw/Viewer.h>
 #include <igl/opengl/glfw/imgui/ImGuiMenu.h>
 #include <igl/opengl/glfw/imgui/ImGuiHelpers.h>
@@ -183,7 +184,7 @@ void get_close_points(Eigen::RowVector3d point, double h, std::vector<int>& resu
     }
 }
 void evaluateImplicitFunc() {
-    wendlandRadius = wendlandRadius * boundingBoxDiagonal;
+    double newWendlandRadius = wendlandRadius * boundingBoxDiagonal;
     grid_values.resize(resolution * resolution * resolution);
 
     for (unsigned int x = 0; x < resolution; x++) {
@@ -195,13 +196,13 @@ void evaluateImplicitFunc() {
                 double px = grid_points(index, 0);
                 double py = grid_points(index, 1);
                 double pz = grid_points(index, 2);
-                get_close_points(grid_points.row(index), wendlandRadius, result_vec, d_vec);
+                get_close_points(grid_points.row(index), newWendlandRadius, result_vec, d_vec);
                 if (result_vec.size() == 0) {
                     grid_values[index] = 100000000000;
                 }
                 else {
                     Eigen::VectorXd r_vec = Eigen::VectorXd::Map(d_vec.data(), d_vec.size());
-                    Eigen::VectorXd weight = (1 - (r_vec.array() / wendlandRadius)).pow(4) * (4 * r_vec.array() / wendlandRadius + 1);
+                    Eigen::VectorXd weight = (1 - (r_vec.array() / newWendlandRadius)).pow(4) * (4 * r_vec.array() / newWendlandRadius + 1);
                     Eigen::VectorXi p_idx = Eigen::VectorXi::Map(result_vec.data(), result_vec.size());
                     Eigen::MatrixXd A, nearby_points;
                     Eigen::VectorXd bx, fi;
@@ -522,7 +523,7 @@ bool callback_load_mesh(Viewer& viewer,string filename)
 int main(int argc, char *argv[]) {
     if (argc != 2) {
       cout << "Usage ex2_bin <mesh.off>" << endl;
-      igl::readOFF("C:/Users/orash/Desktop/Computer Science/Geometric Processing/Project/geometryprocessing2021-Orash94/assignment2/data/bunny-1000.off",P,F,N);
+      igl::readOFF("C:/Users/orash/Desktop/Computer Science/Geometric Processing/Project/geometryprocessing2021-Orash94/assignment2/data/luigi.off",P,F,N);
     }
 	  else
 	  {
@@ -547,6 +548,7 @@ int main(int argc, char *argv[]) {
         // Expose variable directly ...
         ImGui::InputInt("Resolution", &resolution, 0, 0);
         ImGui::InputInt("Polynomial Degree", &polyDegree, 0, 0);
+        ImGui::InputDouble("Wedland Radius", &wendlandRadius, 0, 0);
 
         if (ImGui::Button("Reset Grid", ImVec2(-1,0)))
         {
@@ -555,6 +557,12 @@ int main(int argc, char *argv[]) {
           createGrid();
           // Switch view to show the grid
           callback_key_down(viewer,'3',0);
+        }
+
+        if (ImGui::Button("Export Mesh"))
+        {
+            std::string f = igl::file_dialog_save();
+            igl::writeOFF(f, V, F);
         }
 
         // TODO: Add more parameters to tweak here...

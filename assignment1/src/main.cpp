@@ -527,7 +527,7 @@ int main(int argc, char *argv[]) {
     else
     {
       // Read mesh
-      igl::readOFF("../data/cube.off",V,F);
+      igl::readOFF("../data/reconstructed-bunny-1000.off",V,F);
     }
 
     viewer.data().set_mesh(V,F);
