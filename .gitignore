@@ -590,3 +590,278 @@ assignment2/out/build/x64-Debug (default)/libigl-export.cmake
 assignment2/out/build/x64-Debug (default)/rules.ninja
 assignment2/out/build/x64-Debug (default)/Testing/Temporary/LastTest.log
 assignment2/out/build/x64-Debug (default)/VSInheritEnvironments.txt
+assignment3/.vs/assignment3/v16/.suo
+assignment3/.vs/assignment3/v16/Browse.VC.db
+assignment3/.vs/assignment3/v16/Browse.VC.db-shm
+assignment3/.vs/assignment3/v16/Browse.VC.db-wal
+assignment3/.vs/assignment3/v16/Browse.VC.opendb
+assignment3/.vs/assignment3/v16/ipch/AutoPCH/8206f3ce0ef165d2/MAIN.ipch
+assignment3/.vs/CMake Overview
+assignment3/.vs/ProjectSettings.json
+assignment3/.vs/slnx.sqlite
+assignment3/.vs/VSWorkspaceState.json
+assignment3/Build/ALL_BUILD.vcxproj
+assignment3/Build/ALL_BUILD.vcxproj.filters
+assignment3/Build/assignment3.dir/Debug/assignment3.exe.recipe
+assignment3/Build/assignment3.dir/Debug/assignment3.tlog/assignment3.lastbuildstate
+assignment3/Build/assignment3.dir/Debug/assignment3.tlog/CL.command.1.tlog
+assignment3/Build/assignment3.dir/Debug/assignment3.tlog/CL.read.1.tlog
+assignment3/Build/assignment3.dir/Debug/assignment3.tlog/CL.write.1.tlog
+assignment3/Build/assignment3.dir/Debug/assignment3.tlog/CustomBuild.command.1.tlog
+assignment3/Build/assignment3.dir/Debug/assignment3.tlog/CustomBuild.read.1.tlog
+assignment3/Build/assignment3.dir/Debug/assignment3.tlog/CustomBuild.write.1.tlog
+assignment3/Build/assignment3.dir/Debug/assignment3.tlog/link.command.1.tlog
+assignment3/Build/assignment3.dir/Debug/assignment3.tlog/link.read.1.tlog
+assignment3/Build/assignment3.dir/Debug/assignment3.tlog/link.write.1.tlog
+assignment3/Build/assignment3.dir/Debug/main.obj
+assignment3/Build/assignment3.dir/Debug/vc142.pdb
+assignment3/Build/assignment3.sln
+assignment3/Build/assignment3.vcxproj
+assignment3/Build/assignment3.vcxproj.filters
+assignment3/Build/cmake_install.cmake
+assignment3/Build/CMakeCache.txt
+assignment3/Build/CMakeFiles/3.19.0-rc1/CMakeCCompiler.cmake
+assignment3/Build/CMakeFiles/3.19.0-rc1/CMakeCXXCompiler.cmake
+assignment3/Build/CMakeFiles/3.19.0-rc1/CMakeDetermineCompilerABI_C.bin
+assignment3/Build/CMakeFiles/3.19.0-rc1/CMakeDetermineCompilerABI_CXX.bin
+assignment3/Build/CMakeFiles/3.19.0-rc1/CMakeRCCompiler.cmake
+assignment3/Build/CMakeFiles/3.19.0-rc1/CMakeSystem.cmake
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/CMakeCCompilerId.c
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/CompilerIdC.exe
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/CompilerIdC.vcxproj
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/Debug/CMakeCCompilerId.obj
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/Debug/CompilerIdC.exe.recipe
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/Debug/CompilerIdC.tlog/CL.command.1.tlog
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/Debug/CompilerIdC.tlog/CL.read.1.tlog
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/Debug/CompilerIdC.tlog/CL.write.1.tlog
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/Debug/CompilerIdC.tlog/CompilerIdC.lastbuildstate
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/Debug/CompilerIdC.tlog/link.command.1.tlog
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/Debug/CompilerIdC.tlog/link.read.1.tlog
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/Debug/CompilerIdC.tlog/link.write.1.tlog
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/CMakeCXXCompilerId.cpp
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/CompilerIdCXX.exe
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/CompilerIdCXX.vcxproj
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/Debug/CMakeCXXCompilerId.obj
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/Debug/CompilerIdCXX.exe.recipe
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CL.command.1.tlog
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CL.read.1.tlog
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CL.write.1.tlog
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CompilerIdCXX.lastbuildstate
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/Debug/CompilerIdCXX.tlog/link.command.1.tlog
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/Debug/CompilerIdCXX.tlog/link.read.1.tlog
+assignment3/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/Debug/CompilerIdCXX.tlog/link.write.1.tlog
+assignment3/Build/CMakeFiles/3.19.0-rc1/VCTargetsPath.txt
+assignment3/Build/CMakeFiles/3.19.0-rc1/VCTargetsPath.vcxproj
+assignment3/Build/CMakeFiles/3.19.0-rc1/x64/Debug/VCTargetsPath.recipe
+assignment3/Build/CMakeFiles/3.19.0-rc1/x64/Debug/VCTargetsPath.tlog/VCTargetsPath.lastbuildstate
+assignment3/Build/CMakeFiles/379ccf64b52db1999cdfe01f4afdb363/INSTALL_force.rule
+assignment3/Build/CMakeFiles/4e1ad9a2543b43614299b92d3366411d/generate.stamp.rule
+assignment3/Build/CMakeFiles/4e1ad9a2543b43614299b92d3366411d/INSTALL_force.rule
+assignment3/Build/CMakeFiles/8418ef24ec0a220e0b3e9f930cd40903/INSTALL_force.rule
+assignment3/Build/CMakeFiles/ab8a9cc5ea735baade2c7cff2e66153c/INSTALL_force.rule
+assignment3/Build/CMakeFiles/abc6534d674cb658da42d65ee614dd9a/INSTALL_force.rule
+assignment3/Build/CMakeFiles/cmake.check_cache
+assignment3/Build/CMakeFiles/CMakeError.log
+assignment3/Build/CMakeFiles/CMakeOutput.log
+assignment3/Build/CMakeFiles/Export/share/libigl/cmake/libigl-export.cmake
+assignment3/Build/CMakeFiles/generate.stamp
+assignment3/Build/CMakeFiles/generate.stamp.depend
+assignment3/Build/CMakeFiles/generate.stamp.list
+assignment3/Build/CMakeFiles/TargetDirectories.txt
+assignment3/Build/Debug/assignment3.exe
+assignment3/Build/Debug/assignment3.ilk
+assignment3/Build/Debug/assignment3.pdb
+assignment3/Build/glad/ALL_BUILD.vcxproj
+assignment3/Build/glad/ALL_BUILD.vcxproj.filters
+assignment3/Build/glad/cmake_install.cmake
+assignment3/Build/glad/CMakeFiles/generate.stamp
+assignment3/Build/glad/CMakeFiles/generate.stamp.depend
+assignment3/Build/glad/Debug/glad.lib
+assignment3/Build/glad/Debug/glad.pdb
+assignment3/Build/glad/glad.dir/Debug/glad.lib.recipe
+assignment3/Build/glad/glad.dir/Debug/glad.obj
+assignment3/Build/glad/glad.dir/Debug/glad.pdb
+assignment3/Build/glad/glad.dir/Debug/glad.tlog/CL.command.1.tlog
+assignment3/Build/glad/glad.dir/Debug/glad.tlog/CL.read.1.tlog
+assignment3/Build/glad/glad.dir/Debug/glad.tlog/CL.write.1.tlog
+assignment3/Build/glad/glad.dir/Debug/glad.tlog/CustomBuild.command.1.tlog
+assignment3/Build/glad/glad.dir/Debug/glad.tlog/CustomBuild.read.1.tlog
+assignment3/Build/glad/glad.dir/Debug/glad.tlog/CustomBuild.write.1.tlog
+assignment3/Build/glad/glad.dir/Debug/glad.tlog/glad.lastbuildstate
+assignment3/Build/glad/glad.dir/Debug/glad.tlog/Lib-link.read.1.tlog
+assignment3/Build/glad/glad.dir/Debug/glad.tlog/Lib-link.write.1.tlog
+assignment3/Build/glad/glad.dir/Debug/glad.tlog/Lib.command.1.tlog
+assignment3/Build/glad/glad.dir/Debug/glad.vcxproj.FileListAbsolute.txt
+assignment3/Build/glad/glad.sln
+assignment3/Build/glad/glad.vcxproj
+assignment3/Build/glad/glad.vcxproj.filters
+assignment3/Build/glad/INSTALL.vcxproj
+assignment3/Build/glad/INSTALL.vcxproj.filters
+assignment3/Build/glfw/ALL_BUILD.vcxproj
+assignment3/Build/glfw/ALL_BUILD.vcxproj.filters
+assignment3/Build/glfw/cmake_install.cmake
+assignment3/Build/glfw/CMakeFiles/generate.stamp
+assignment3/Build/glfw/CMakeFiles/generate.stamp.depend
+assignment3/Build/glfw/GLFW.sln
+assignment3/Build/glfw/INSTALL.vcxproj
+assignment3/Build/glfw/INSTALL.vcxproj.filters
+assignment3/Build/glfw/src/cmake_install.cmake
+assignment3/Build/glfw/src/CMakeFiles/generate.stamp
+assignment3/Build/glfw/src/CMakeFiles/generate.stamp.depend
+assignment3/Build/glfw/src/Debug/glfw3.lib
+assignment3/Build/glfw/src/glfw.dir/Debug/context.obj
+assignment3/Build/glfw/src/glfw.dir/Debug/egl_context.obj
+assignment3/Build/glfw/src/glfw.dir/Debug/glfw.pdb
+assignment3/Build/glfw/src/glfw.dir/Debug/glfw.tlog/CL.command.1.tlog
+assignment3/Build/glfw/src/glfw.dir/Debug/glfw.tlog/CL.read.1.tlog
+assignment3/Build/glfw/src/glfw.dir/Debug/glfw.tlog/CL.write.1.tlog
+assignment3/Build/glfw/src/glfw.dir/Debug/glfw.tlog/CustomBuild.command.1.tlog
+assignment3/Build/glfw/src/glfw.dir/Debug/glfw.tlog/CustomBuild.read.1.tlog
+assignment3/Build/glfw/src/glfw.dir/Debug/glfw.tlog/CustomBuild.write.1.tlog
+assignment3/Build/glfw/src/glfw.dir/Debug/glfw.tlog/glfw.lastbuildstate
+assignment3/Build/glfw/src/glfw.dir/Debug/glfw.tlog/Lib-link.read.1.tlog
+assignment3/Build/glfw/src/glfw.dir/Debug/glfw.tlog/Lib-link.write.1.tlog
+assignment3/Build/glfw/src/glfw.dir/Debug/glfw.tlog/Lib.command.1.tlog
+assignment3/Build/glfw/src/glfw.dir/Debug/glfw3.lib.recipe
+assignment3/Build/glfw/src/glfw.dir/Debug/init.obj
+assignment3/Build/glfw/src/glfw.dir/Debug/input.obj
+assignment3/Build/glfw/src/glfw.dir/Debug/monitor.obj
+assignment3/Build/glfw/src/glfw.dir/Debug/osmesa_context.obj
+assignment3/Build/glfw/src/glfw.dir/Debug/vulkan.obj
+assignment3/Build/glfw/src/glfw.dir/Debug/wgl_context.obj
+assignment3/Build/glfw/src/glfw.dir/Debug/win32_init.obj
+assignment3/Build/glfw/src/glfw.dir/Debug/win32_joystick.obj
+assignment3/Build/glfw/src/glfw.dir/Debug/win32_monitor.obj
+assignment3/Build/glfw/src/glfw.dir/Debug/win32_thread.obj
+assignment3/Build/glfw/src/glfw.dir/Debug/win32_time.obj
+assignment3/Build/glfw/src/glfw.dir/Debug/win32_window.obj
+assignment3/Build/glfw/src/glfw.dir/Debug/window.obj
+assignment3/Build/glfw/src/glfw.vcxproj
+assignment3/Build/glfw/src/glfw.vcxproj.filters
+assignment3/Build/glfw/src/glfw3.pc
+assignment3/Build/glfw/src/glfw3Config.cmake
+assignment3/Build/glfw/src/glfw3ConfigVersion.cmake
+assignment3/Build/glfw/src/glfw_config.h
+assignment3/Build/glfw/src/INSTALL.vcxproj
+assignment3/Build/glfw/src/INSTALL.vcxproj.filters
+assignment3/Build/imgui/cmake_install.cmake
+assignment3/Build/imgui/CMakeFiles/generate.stamp
+assignment3/Build/imgui/CMakeFiles/generate.stamp.depend
+assignment3/Build/imgui/Debug/imgui.lib
+assignment3/Build/imgui/Debug/imgui.pdb
+assignment3/Build/imgui/imgui.dir/Debug/imgui.lib.recipe
+assignment3/Build/imgui/imgui.dir/Debug/imgui.obj
+assignment3/Build/imgui/imgui.dir/Debug/imgui.pdb
+assignment3/Build/imgui/imgui.dir/Debug/imgui.tlog/CL.command.1.tlog
+assignment3/Build/imgui/imgui.dir/Debug/imgui.tlog/CL.read.1.tlog
+assignment3/Build/imgui/imgui.dir/Debug/imgui.tlog/CL.write.1.tlog
+assignment3/Build/imgui/imgui.dir/Debug/imgui.tlog/CustomBuild.command.1.tlog
+assignment3/Build/imgui/imgui.dir/Debug/imgui.tlog/CustomBuild.read.1.tlog
+assignment3/Build/imgui/imgui.dir/Debug/imgui.tlog/CustomBuild.write.1.tlog
+assignment3/Build/imgui/imgui.dir/Debug/imgui.tlog/imgui.lastbuildstate
+assignment3/Build/imgui/imgui.dir/Debug/imgui.tlog/Lib-link.read.1.tlog
+assignment3/Build/imgui/imgui.dir/Debug/imgui.tlog/Lib-link.write.1.tlog
+assignment3/Build/imgui/imgui.dir/Debug/imgui.tlog/Lib.command.1.tlog
+assignment3/Build/imgui/imgui.dir/Debug/imgui.vcxproj.FileListAbsolute.txt
+assignment3/Build/imgui/imgui.dir/Debug/imgui_demo.obj
+assignment3/Build/imgui/imgui.dir/Debug/imgui_draw.obj
+assignment3/Build/imgui/imgui.dir/Debug/imgui_impl_glfw.obj
+assignment3/Build/imgui/imgui.dir/Debug/imgui_impl_opengl3.obj
+assignment3/Build/imgui/imgui.vcxproj
+assignment3/Build/imgui/imgui.vcxproj.filters
+assignment3/Build/imgui/INSTALL.vcxproj
+assignment3/Build/imgui/INSTALL.vcxproj.filters
+assignment3/Build/INSTALL.vcxproj
+assignment3/Build/INSTALL.vcxproj.filters
+assignment3/Build/libigl-config.cmake
+assignment3/Build/libigl-export.cmake
+assignment3/Build/x64/Debug/ZERO_CHECK/ZERO_CHECK.recipe
+assignment3/Build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.command.1.tlog
+assignment3/Build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.read.1.tlog
+assignment3/Build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.write.1.tlog
+assignment3/Build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/ZERO_CHECK.lastbuildstate
+assignment3/Build/ZERO_CHECK.vcxproj
+assignment3/Build/ZERO_CHECK.vcxproj.filters
+assignment3/out/build/x64-Debug (default)/.cmake/api/v1/query/client-MicrosoftVS/query.json
+assignment3/out/build/x64-Debug (default)/.cmake/api/v1/reply/cache-v2-adc07b70464c75326639.json
+assignment3/out/build/x64-Debug (default)/.cmake/api/v1/reply/cmakeFiles-v1-3eed57ab7424017eb3ec.json
+assignment3/out/build/x64-Debug (default)/.cmake/api/v1/reply/codemodel-v2-76b7784693c9f1ad10b8.json
+assignment3/out/build/x64-Debug (default)/.cmake/api/v1/reply/index-2021-04-25T15-16-23-0360.json
+assignment3/out/build/x64-Debug (default)/.cmake/api/v1/reply/target-assignment3-Debug-72cda6435544e8e662f9.json
+assignment3/out/build/x64-Debug (default)/.cmake/api/v1/reply/target-glad-Debug-a2bc5fa18424f6ebaa37.json
+assignment3/out/build/x64-Debug (default)/.cmake/api/v1/reply/target-glfw-Debug-ea0b7e7d09882e662c09.json
+assignment3/out/build/x64-Debug (default)/.cmake/api/v1/reply/target-imgui-Debug-6a999a22ac58f8940939.json
+assignment3/out/build/x64-Debug (default)/.ninja_deps
+assignment3/out/build/x64-Debug (default)/.ninja_log
+assignment3/out/build/x64-Debug (default)/assignment3.exe
+assignment3/out/build/x64-Debug (default)/assignment3.ilk
+assignment3/out/build/x64-Debug (default)/assignment3.pdb
+assignment3/out/build/x64-Debug (default)/build.ninja
+assignment3/out/build/x64-Debug (default)/cmake_install.cmake
+assignment3/out/build/x64-Debug (default)/CMakeCache.txt
+assignment3/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CMakeCCompiler.cmake
+assignment3/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CMakeCXXCompiler.cmake
+assignment3/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CMakeDetermineCompilerABI_C.bin
+assignment3/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CMakeDetermineCompilerABI_CXX.bin
+assignment3/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CMakeRCCompiler.cmake
+assignment3/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CMakeSystem.cmake
+assignment3/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CompilerIdC/CMakeCCompilerId.c
+assignment3/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CompilerIdC/CMakeCCompilerId.exe
+assignment3/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CompilerIdC/CMakeCCompilerId.obj
+assignment3/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.cpp
+assignment3/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.exe
+assignment3/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.obj
+assignment3/out/build/x64-Debug (default)/CMakeFiles/assignment3.dir/embed.manifest
+assignment3/out/build/x64-Debug (default)/CMakeFiles/assignment3.dir/intermediate.manifest
+assignment3/out/build/x64-Debug (default)/CMakeFiles/assignment3.dir/manifest.rc
+assignment3/out/build/x64-Debug (default)/CMakeFiles/assignment3.dir/manifest.res
+assignment3/out/build/x64-Debug (default)/CMakeFiles/assignment3.dir/src/main.cpp.obj
+assignment3/out/build/x64-Debug (default)/CMakeFiles/assignment3.dir/vc140.pdb
+assignment3/out/build/x64-Debug (default)/CMakeFiles/cmake.check_cache
+assignment3/out/build/x64-Debug (default)/CMakeFiles/CMakeError.log
+assignment3/out/build/x64-Debug (default)/CMakeFiles/CMakeOutput.log
+assignment3/out/build/x64-Debug (default)/CMakeFiles/Export/share/libigl/cmake/libigl-export.cmake
+assignment3/out/build/x64-Debug (default)/CMakeFiles/ShowIncludes/foo.h
+assignment3/out/build/x64-Debug (default)/CMakeFiles/ShowIncludes/main.c
+assignment3/out/build/x64-Debug (default)/CMakeFiles/ShowIncludes/main.obj
+assignment3/out/build/x64-Debug (default)/CMakeFiles/TargetDirectories.txt
+assignment3/out/build/x64-Debug (default)/glad/cmake_install.cmake
+assignment3/out/build/x64-Debug (default)/glad/CMakeFiles/glad.dir/glad.pdb
+assignment3/out/build/x64-Debug (default)/glad/CMakeFiles/glad.dir/src/glad.c.obj
+assignment3/out/build/x64-Debug (default)/glad/glad.lib
+assignment3/out/build/x64-Debug (default)/glfw/cmake_install.cmake
+assignment3/out/build/x64-Debug (default)/glfw/src/cmake_install.cmake
+assignment3/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/context.c.obj
+assignment3/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/egl_context.c.obj
+assignment3/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
+assignment3/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/init.c.obj
+assignment3/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/input.c.obj
+assignment3/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/monitor.c.obj
+assignment3/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.obj
+assignment3/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/vulkan.c.obj
+assignment3/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj
+assignment3/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/win32_init.c.obj
+assignment3/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.obj
+assignment3/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.obj
+assignment3/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.obj
+assignment3/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/win32_time.c.obj
+assignment3/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/win32_window.c.obj
+assignment3/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/window.c.obj
+assignment3/out/build/x64-Debug (default)/glfw/src/glfw3.lib
+assignment3/out/build/x64-Debug (default)/glfw/src/glfw3.pc
+assignment3/out/build/x64-Debug (default)/glfw/src/glfw3Config.cmake
+assignment3/out/build/x64-Debug (default)/glfw/src/glfw3ConfigVersion.cmake
+assignment3/out/build/x64-Debug (default)/glfw/src/glfw_config.h
+assignment3/out/build/x64-Debug (default)/imgui/cmake_install.cmake
+assignment3/out/build/x64-Debug (default)/imgui/CMakeFiles/imgui.dir/77230081b663237fb28dbe0e9a9a083e/imgui/examples/imgui_impl_glfw.cpp.obj
+assignment3/out/build/x64-Debug (default)/imgui/CMakeFiles/imgui.dir/beffdc8db186312be9cdbbedaca34aca/libigl/external/imgui/imgui.cpp.obj
+assignment3/out/build/x64-Debug (default)/imgui/CMakeFiles/imgui.dir/beffdc8db186312be9cdbbedaca34aca/libigl/external/imgui/imgui_demo.cpp.obj
+assignment3/out/build/x64-Debug (default)/imgui/CMakeFiles/imgui.dir/beffdc8db186312be9cdbbedaca34aca/libigl/external/imgui/imgui_draw.cpp.obj
+assignment3/out/build/x64-Debug (default)/imgui/CMakeFiles/imgui.dir/imgui.pdb
+assignment3/out/build/x64-Debug (default)/imgui/CMakeFiles/imgui.dir/imgui_impl_opengl3.cpp.obj
+assignment3/out/build/x64-Debug (default)/imgui/imgui.lib
+assignment3/out/build/x64-Debug (default)/libigl-config.cmake
+assignment3/out/build/x64-Debug (default)/libigl-export.cmake
+assignment3/out/build/x64-Debug (default)/rules.ninja
+assignment3/out/build/x64-Debug (default)/Testing/Temporary/LastTest.log
+assignment3/out/build/x64-Debug (default)/VSInheritEnvironments.txt
