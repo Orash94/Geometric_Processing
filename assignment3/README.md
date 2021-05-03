@@ -4,41 +4,43 @@
 
 ## Required results
 
+
+
 ### Hemishpere
 
 Uniform Laplacian (3D):
 
-![hemisphere uniform laplacian](photos/hemisphere uniform laplacian.PNG)
+<img src="photos/hemisphere uniform laplacian.PNG" alt="hemisphere uniform laplacian" style="zoom:50%;" />
 
 
 
 Uniform Laplacian (UV representation):
 
-![hemisphere uniform laplacian parametrization](photos/hemisphere uniform laplacian parametrization.PNG)
+<img src="photos/hemisphere uniform laplacian parametrization.PNG" alt="hemisphere uniform laplacian parametrization" style="zoom:50%;" />
 
 
 
 Cotangent Laplacian (3D):
 
-![hemisphere cotangent laplacian](photos/hemisphere cotangent laplacian.PNG)
+<img src="photos/hemisphere cotangent laplacian.PNG" alt="hemisphere cotangent laplacian" style="zoom:50%;" />
 
 
 
 Uniform Laplacian (UV representation):
 
-![hemisphere cotangent laplacian parametrization](photos/hemisphere cotangent laplacian parametrization.PNG)
+<img src="photos/hemisphere cotangent laplacian parametrization.PNG" alt="hemisphere cotangent laplacian parametrization" style="zoom:50%;" />
 
 
 
 LSCM (3D):
 
-![hemisphere LSCM](photos/hemisphere LSCM.PNG)
+<img src="photos/hemisphere LSCM.PNG" alt="hemisphere LSCM" style="zoom:50%;" />
 
 
 
 LSCM (UV representation):
 
-![hemisphere LSCM Parametrization](photos/hemisphere LSCM Parametrization.PNG)
+<img src="photos/hemisphere LSCM Parametrization.PNG" alt="hemisphere LSCM Parametrization" style="zoom:50%;" />
 
 
 
@@ -126,37 +128,37 @@ When we speak about the other two (Cotangent Laplacian and LSCM), we can see tha
 
 Uniform Laplacian (3D):
 
-![cathead uniform laplacian](photos/cathead uniform laplacian.PNG)
+<img src="photos/cathead uniform laplacian.PNG" alt="cathead uniform laplacian" style="zoom:50%;" />
 
 
 
 Uniform Laplacian (UV):
 
-![cathead uniform laplacian UV](photos/cathead uniform laplacian UV.PNG)
+<img src="photos/cathead uniform laplacian UV.PNG" alt="cathead uniform laplacian UV" style="zoom:50%;" />
 
 
 
 Cotangent Laplacian (3D):
 
-![cathead cotangent laplacian](photos/cathead cotangent laplacian.PNG)
+<img src="photos/cathead cotangent laplacian.PNG" alt="cathead cotangent laplacian" style="zoom:50%;" />
 
 
 
 Cotangent Laplacian (UV):
 
-![cathead cotangent laplacian UV](photos/cathead cotangent laplacian UV.PNG)
+<img src="photos/cathead cotangent laplacian UV.PNG" alt="cathead cotangent laplacian UV" style="zoom:50%;" />
 
 
 
 LSCM (3D):
 
-![cathead LSCM](photos/cathead LSCM.PNG)
+<img src="photos/cathead LSCM.PNG" alt="cathead LSCM" style="zoom:50%;" />
 
 
 
 LSCM (UV):
 
-![cathead LSCM UV](photos/cathead LSCM UV.PNG)
+<img src="photos/cathead LSCM UV.PNG" alt="cathead LSCM UV" style="zoom:50%;" />
 
 
 
@@ -216,35 +218,35 @@ LSCM & Isometric Distortion
 
 Uniform Laplacian (3D):
 
-![bunny uniform laplacian](photos/bunny uniform laplacian.PNG) 
+<img src="photos/bunny uniform laplacian.PNG" alt="bunny uniform laplacian" style="zoom:50%;" /> 
 
 
 
 Uniform Laplacian (UV):
 
-![bunny uniform laplacian UV](photos/bunny uniform laplacian UV.PNG)
+<img src="photos/bunny uniform laplacian UV.PNG" alt="bunny uniform laplacian UV" style="zoom:50%;" />
 
 
 
 Cotangent Laplacian (3D):
 
-![bunny cotangent laplacian](photos/bunny cotangent laplacian.PNG)
+<img src="photos/bunny cotangent laplacian.PNG" alt="bunny cotangent laplacian" style="zoom:50%;" />
 
 Uniform Laplacian (UV):
 
-![bunny cotangent laplacian UV](photos/bunny cotangent laplacian UV.PNG)
+<img src="photos/bunny cotangent laplacian UV.PNG" alt="bunny cotangent laplacian UV" style="zoom:50%;" />
 
 
 
 LSCM (3D):
 
-![bunny LSCM](photos/bunny LSCM.PNG)
+<img src="photos/bunny LSCM.PNG" alt="bunny LSCM" style="zoom:50%;" />
 
 
 
 Uniform Laplacian (UV):
 
-![bunny LSCM UV](photos/bunny LSCM UV.PNG)
+<img src="photos/bunny LSCM UV.PNG" alt="bunny LSCM UV" style="zoom:50%;" />
 
 
 
