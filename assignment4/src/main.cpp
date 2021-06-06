@@ -6,7 +6,11 @@
 #include <igl/slice_into.h>
 #include <igl/rotate_by_quat.h>
 
-// ...
+#include <igl/slice.h>
+#include <igl/cotmatrix.h>
+#include <igl/per_vertex_normals.h>
+#include <chrono>   // used for computing the execution time
+#include <ctime>
 
 #include "Lasso.h"
 #include "Colors.h"
@@ -16,14 +20,15 @@
 
 using namespace std;
 using namespace Eigen;
+using namespace std::chrono;
 using Viewer = igl::opengl::glfw::Viewer;
 
 Viewer viewer;
 
 //vertex array, #V x3
-Eigen::MatrixXd V(0,3), V_cp(0, 3);
+Eigen::MatrixXd V(0, 3), V_cp(0, 3);
 //face array, #F x3
-Eigen::MatrixXi F(0,3);
+Eigen::MatrixXi F(0, 3);
 
 //mouse interaction
 enum MouseMode { SELECT, TRANSLATE, ROTATE, NONE };
@@ -34,33 +39,46 @@ int down_mouse_x = -1, down_mouse_y = -1;
 //for selecting vertices
 std::unique_ptr<Lasso> lasso;
 //list of currently selected vertices
-Eigen::VectorXi selected_v(0,1);
+Eigen::VectorXi selected_v(0, 1);
 
 //for saving constrained vertices
 //vertex-to-handle index, #V x1 (-1 if vertex is free)
-Eigen::VectorXi handle_id(0,1);
+Eigen::VectorXi handle_id(0, 1);
 //list of all vertices belonging to handles, #HV x1
-Eigen::VectorXi handle_vertices(0,1);
+Eigen::VectorXi handle_vertices(0, 1);
 //centroids of handle regions, #H x1
-Eigen::MatrixXd handle_centroids(0,3);
+Eigen::MatrixXd handle_centroids(0, 3);
 //updated positions of handle vertices, #HV x3
-Eigen::MatrixXd handle_vertex_positions(0,3);
+Eigen::MatrixXd handle_vertex_positions(0, 3);
 //index of handle being moved
 int moving_handle = -1;
 //rotation and translation for the handle being moved
-Eigen::Vector3f translation(0,0,0);
-Eigen::Vector4f rotation(0,0,0,1.);
+Eigen::Vector3f translation(0, 0, 0);
+Eigen::Vector4f rotation(0, 0, 0, 1.);
 typedef Eigen::Triplet<double> T;
 //per vertex color array, #V x3
 Eigen::MatrixXd vertex_colors;
+Eigen::MatrixXd V_origin, Vb, Vb_prime, Vs_prime;
+long count_It = 0;
+double total_time = 0;
+int moving_handle_idx = -1;
+
+Eigen::VectorXi total_vertices, notHandled_vertices;
+Eigen::SparseMatrix<double> Aff, Afc;
+Eigen::SimplicialCholesky<Eigen::SparseMatrix<double>, Eigen::RowMajor > solver;
+Eigen::VectorXd localD;
+Eigen::RowVector3f goalPositionCopy;
+std::string curr_mesh;
+
 
 //function declarations (see below for implementation)
 bool solve(Viewer& viewer);
+void buildSystem(Eigen::MatrixXd& V);
 void get_new_handle_locations();
-Eigen::Vector3f computeTranslation (Viewer& viewer, int mouse_x, int from_x, int mouse_y, int from_y, Eigen::RowVector3d pt3D);
+Eigen::Vector3f computeTranslation(Viewer& viewer, int mouse_x, int from_x, int mouse_y, int from_y, Eigen::RowVector3d pt3D);
 Eigen::Vector4f computeRotation(Viewer& viewer, int mouse_x, int from_x, int mouse_y, int from_y, Eigen::RowVector3d pt3D);
 void compute_handle_centroids();
-Eigen::MatrixXd readMatrix(const char *filename);
+Eigen::MatrixXd readMatrix(const char* filename);
 
 bool callback_mouse_down(Viewer& viewer, int button, int modifier);
 bool callback_mouse_move(Viewer& viewer, int mouse_x, int mouse_y);
@@ -70,476 +88,612 @@ bool callback_key_down(Viewer& viewer, unsigned char key, int modifiers);
 void onNewHandleID();
 void applySelection();
 
+
 bool solve(Viewer& viewer)
 {
-  /**** Add your code for computing the deformation from handle_vertex_positions and handle_vertices here (replace following line) ****/
-  igl::slice_into(handle_vertex_positions, handle_vertices, 1, V);
+    /**** Add your code for computing the deformation from handle_vertex_positions and handle_vertices here (replace following line) ****/
+    // igl::slice_into(handle_vertex_positions, handle_vertices, 1, V);
 
-  return true;
+    Eigen::MatrixXd B = V_origin;
+    Eigen::MatrixXd Disp(V.rows(), 3), localD(V.rows(), 3);    
+    Eigen::MatrixXd N(V.rows(), 3);   
+    Eigen::MatrixXd origin_handle_positions, Vf;
+    Eigen::MatrixXd neighbors(V.rows(), 3);
+    std::vector<std::vector<int>> VV;   
+    igl::adjacency_list(F, VV);
+
+    origin_handle_positions = igl::slice(V_origin, handle_vertices, 1);
+    Vf = solver.solve(-Afc * origin_handle_positions);
+    igl::slice_into(Vf, notHandled_vertices, 1, B);
+    Vb = B;
+    Disp = V_origin - B;
+    igl::per_vertex_normals(B, F, N);
+    for (int i = 0; i < V.rows(); i++) {
+        double maxDist = 0;
+        Eigen::RowVector3d ni = N.row(i); ni.normalize();
+        Eigen::RowVector3d xi(3), yi(3);
+        for (int j = 0; j < VV[i].size(); ++j) {
+            Eigen::RowVector3d vi = B.row(VV[i][j]);
+            Eigen::RowVector3d proj(3);
+            proj = (vi - B.row(i)) - (vi - B.row(i)).dot(ni) * ni;
+            if (proj.squaredNorm() > maxDist) {
+                xi = proj;
+                neighbors.row(i) << vi - B.row(i);
+                maxDist = proj.squaredNorm();
+            }
+        }
+        xi.normalize();
+        yi = xi.cross(ni); 
+        yi.normalize();
+        Eigen::RowVector3d di = Disp.row(i);
+        localD.row(i) << di.dot(xi), di.dot(yi), di.dot(ni);
+    }
+
+    Vf = solver.solve(-Afc * handle_vertex_positions);
+    igl::slice_into(Vf, notHandled_vertices, 1, B);
+    igl::slice_into(handle_vertex_positions, handle_vertices, 1, B);
+
+    igl::per_vertex_normals(B, F, N);
+    Disp.resize(V.rows(), 3);
+    for (int i = 0; i < V.rows(); i++) {
+        Eigen::RowVector3d ni = N.row(i); ni.normalize();
+        Eigen::RowVector3d vi = neighbors.row(i);
+        Eigen::RowVector3d xi(3), yi(3);
+        xi = vi - vi.dot(ni) * ni;
+        xi.normalize();
+        yi = xi.cross(ni); 
+        yi.normalize();
+        Disp.row(i) = localD(i, 0) * xi + localD(i, 1) * yi + localD(i, 2) * ni;
+    }
+
+    Eigen::MatrixXd Vout = Disp + B;
+    V = Vout;
+    Vb_prime = B;
+    Vs_prime = Vout;
+    moving_handle_idx = moving_handle;
+
+    return true;
 };
+
+
+void buildSystem(Eigen::MatrixXd& V) {
+    Eigen::SparseMatrix<double> Lw, M, Minv, K;
+    notHandled_vertices.resize(V.rows() - handle_vertices.rows());
+    int count = 0;
+    for (int i = 0; i < V.rows(); i++) {
+        if (handle_id(i) == -1) {
+            notHandled_vertices(count++) = i;
+        }
+    }
+    igl::cotmatrix(V, F, Lw);
+    Lw = -Lw;
+    igl::massmatrix(V, F, igl::MASSMATRIX_TYPE_VORONOI, M);
+    Minv = M.cwiseInverse();
+    K = Lw * Minv * Lw;
+    igl::slice(K, notHandled_vertices, notHandled_vertices, Aff);
+    igl::slice(K, notHandled_vertices, handle_vertices, Afc);
+
+    solver.compute(Aff);
+}
 
 void get_new_handle_locations()
 {
-  int count = 0;
-  for (long vi = 0; vi < V.rows(); ++vi)
-    if (handle_id[vi] >= 0)
+    int count = 0;
+    for (long vi = 0; vi < V.rows(); ++vi)
     {
-      Eigen::RowVector3f goalPosition = V.row(vi).cast<float>();
+        if (handle_id[vi] >= 0)
+        {
+            Eigen::RowVector3f goalPosition = V.row(vi).cast<float>();
+            goalPositionCopy = goalPosition;
 
-      if (handle_id[vi] == moving_handle) {
-        if (mouse_mode == TRANSLATE)
-          goalPosition += translation;
-        else if (mouse_mode == ROTATE) {
-          Eigen::RowVector3f  goalPositionCopy = goalPosition;
-          goalPosition -= handle_centroids.row(moving_handle).cast<float>();
-          igl::rotate_by_quat(goalPosition.data(), rotation.data(), goalPositionCopy.data());
-          goalPosition = goalPositionCopy;
-          goalPosition += handle_centroids.row(moving_handle).cast<float>();
+            if (handle_id[vi] == moving_handle) {
+                if (mouse_mode == TRANSLATE)
+                    goalPosition += translation;
+                else if (mouse_mode == ROTATE) {
+                    goalPosition -= handle_centroids.row(moving_handle).cast<float>();
+                    igl::rotate_by_quat(goalPosition.data(), rotation.data(), goalPositionCopy.data());
+                    goalPosition = goalPositionCopy;
+                    goalPosition += handle_centroids.row(moving_handle).cast<float>();
+                }
+            }
+            handle_vertex_positions.row(count++) = goalPosition.cast<double>();
         }
-      }
-      handle_vertex_positions.row(count++) = goalPosition.cast<double>();
     }
 }
 
 bool load_mesh(string filename)
 {
-  igl::read_triangle_mesh(filename,V,F);
-  viewer.data().clear();
-  viewer.data().set_mesh(V, F);
+    if (filename != "")
+        igl::read_triangle_mesh(filename, V, F);
+    else {
+        filename = igl::file_dialog_open();
+        igl::read_triangle_mesh(filename, V, F);
+    }
+    curr_mesh = filename;
+    viewer.data().clear();
+    viewer.data().set_mesh(V, F);
 
-  viewer.core.align_camera_center(V);
-  V_cp = V;
-  handle_id.setConstant(V.rows(), 1, -1);
-  // Initialize selector
-  lasso = std::unique_ptr<Lasso>(new Lasso(V, F, viewer));
+    viewer.core.align_camera_center(V);
+    V_cp = V;
+    handle_id.setConstant(V.rows(), 1, -1);
+    // Initialize selector
+    lasso = std::unique_ptr<Lasso>(new Lasso(V, F, viewer));
 
-  selected_v.resize(0,1);
+    selected_v.resize(0, 1);
 
-  return true;
+    return true;
 }
 
-int main(int argc, char *argv[])
+bool reset_mesh()
 {
-  if(argc != 2) {
-    cout << "Usage assignment4 mesh.off>" << endl;
-    load_mesh("../data/woody-lo.off");
-  }
-  else
-  {
-    load_mesh(argv[1]);
-  }
+    igl::read_triangle_mesh(curr_mesh, V, F);
+    viewer.data().clear();
+    viewer.data().set_mesh(V, F);
 
-  igl::opengl::glfw::imgui::ImGuiMenu menu;
-  viewer.plugins.push_back(&menu);
+    viewer.core.align_camera_center(V);
+    V_cp = V;
+    handle_id.setConstant(V.rows(), 1, -1);
+    // Initialize selector
+    lasso = std::unique_ptr<Lasso>(new Lasso(V, F, viewer));
 
-  menu.callback_draw_viewer_menu = [&]()
-  {
-    // Draw parent menu content
-    menu.draw_viewer_menu();
+    selected_v.resize(0, 1);
 
-    // Add new group
-    if (ImGui::CollapsingHeader("Deformation Controls", ImGuiTreeNodeFlags_DefaultOpen))
-    {
-          int mouse_mode_type = static_cast<int>(mouse_mode);
+    return true;
 
-          if (ImGui::Combo("Mouse Mode", &mouse_mode_type, "SELECT\0TRANSLATE\0ROTATE\0NONE\0"))
-          {
-            mouse_mode = static_cast<MouseMode>(mouse_mode_type);
-          }
+}
 
-          if (ImGui::Button("Clear Selection", ImVec2(-1,0)))
-          {
-            selected_v.resize(0,1);
-          }
-
-          if (ImGui::Button("Apply Selection", ImVec2(-1,0)))
-          {
-            applySelection();
-          }
-
-          if (ImGui::Button("Clear Constraints", ImVec2(-1,0)))
-          {
-            handle_id.setConstant(V.rows(),1,-1);
-          }
+int main(int argc, char* argv[])
+{
+    if (argc != 2) {
+        cout << "Usage assignment4 mesh.off>" << endl;
+        load_mesh("../../../data/woody-lo.off");
     }
-  };
+    else
+    {
+        load_mesh(argv[1]);
+    }
 
-  viewer.callback_key_down = callback_key_down;
-  viewer.callback_mouse_down = callback_mouse_down;
-  viewer.callback_mouse_move = callback_mouse_move;
-  viewer.callback_mouse_up = callback_mouse_up;
-  viewer.callback_pre_draw = callback_pre_draw;
+    igl::opengl::glfw::imgui::ImGuiMenu menu;
+    viewer.plugins.push_back(&menu);
 
-  viewer.data().point_size = 10;
-  viewer.core.set_rotation_type(igl::opengl::ViewerCore::ROTATION_TYPE_TRACKBALL);
-  viewer.launch();
+    menu.callback_draw_viewer_menu = [&]()
+    {
+        // Draw parent menu content
+        menu.draw_viewer_menu();
+
+        // Add new group
+        if (ImGui::CollapsingHeader("Deformation Controls", ImGuiTreeNodeFlags_DefaultOpen))
+        {
+            int mouse_mode_type = static_cast<int>(mouse_mode);
+
+            if (ImGui::Combo("Mouse Mode", &mouse_mode_type, "SELECT\0TRANSLATE\0ROTATE\0NONE\0"))
+            {
+                mouse_mode = static_cast<MouseMode>(mouse_mode_type);
+            }
+
+            if (ImGui::Button("Clear Selection", ImVec2(-1, 0)))
+            {
+                selected_v.resize(0, 1);
+            }
+
+            if (ImGui::Button("Apply Selection", ImVec2(-1, 0)))
+            {
+                applySelection();
+            }
+
+            if (ImGui::Button("Clear Constraints", ImVec2(-1, 0)))
+            {
+                handle_id.setConstant(V.rows(), 1, -1);
+            }
+            if (ImGui::Button("Load Mesh", ImVec2(-1, 0)))
+            {
+                load_mesh("");
+            }
+            if (ImGui::Button("Reset Mesh", ImVec2(-1, 0)))
+            {
+                reset_mesh();
+            }
+        }
+    };
+
+    viewer.callback_key_down = callback_key_down;
+    viewer.callback_mouse_down = callback_mouse_down;
+    viewer.callback_mouse_move = callback_mouse_move;
+    viewer.callback_mouse_up = callback_mouse_up;
+    viewer.callback_pre_draw = callback_pre_draw;
+
+    viewer.data().point_size = 10;
+    viewer.core.set_rotation_type(igl::opengl::ViewerCore::ROTATION_TYPE_TRACKBALL);
+    viewer.launch();
 }
 
 
 bool callback_mouse_down(Viewer& viewer, int button, int modifier)
 {
-  if (button == (int) Viewer::MouseButton::Right)
-    return false;
+    if (button == (int)Viewer::MouseButton::Right)
+        return false;
 
-  down_mouse_x = viewer.current_mouse_x;
-  down_mouse_y = viewer.current_mouse_y;
+    down_mouse_x = viewer.current_mouse_x;
+    down_mouse_y = viewer.current_mouse_y;
 
-  if (mouse_mode == SELECT)
-  {
-    if (lasso->strokeAdd(viewer.current_mouse_x, viewer.current_mouse_y) >=0)
-      doit = true;
-    else
-      lasso->strokeReset();
-  }
-  else if ((mouse_mode == TRANSLATE) || (mouse_mode == ROTATE))
-  {
-    int vi = lasso->pickVertex(viewer.current_mouse_x, viewer.current_mouse_y);
-    if(vi>=0 && handle_id[vi]>=0)  //if a region was found, mark it for translation/rotation
+    if (mouse_mode == SELECT)
     {
-      moving_handle = handle_id[vi];
-      get_new_handle_locations();
-      doit = true;
+        if (lasso->strokeAdd(viewer.current_mouse_x, viewer.current_mouse_y) >= 0)
+            doit = true;
+        else
+            lasso->strokeReset();
     }
-  }
-  return doit;
+    else if ((mouse_mode == TRANSLATE) || (mouse_mode == ROTATE))
+    {
+        int vi = lasso->pickVertex(viewer.current_mouse_x, viewer.current_mouse_y);
+        if (vi >= 0 && handle_id[vi] >= 0)  //if a region was found, mark it for translation/rotation
+        {
+            moving_handle = handle_id[vi];
+            try {
+                get_new_handle_locations();
+            }
+            catch (...) {
+                cout << "Sababa Sali" << endl;
+            }
+
+            doit = true;
+        }
+    }
+    return doit;
 }
 
 bool callback_mouse_move(Viewer& viewer, int mouse_x, int mouse_y)
 {
-  if (!doit)
-    return false;
-  if (mouse_mode == SELECT)
-  {
-    lasso->strokeAdd(mouse_x, mouse_y);
-    return true;
-  }
-  if ((mouse_mode == TRANSLATE) || (mouse_mode == ROTATE))
-  {
-    if (mouse_mode == TRANSLATE) {
-      translation = computeTranslation(viewer,
-                                       mouse_x,
-                                       down_mouse_x,
-                                       mouse_y,
-                                       down_mouse_y,
-                                       handle_centroids.row(moving_handle));
+    if (!doit)
+        return false;
+    if (mouse_mode == SELECT)
+    {
+        lasso->strokeAdd(mouse_x, mouse_y);
+        return true;
     }
-    else {
-        rotation = computeRotation(viewer,
-                                 mouse_x,
-                                 down_mouse_x,
-                                 mouse_y,
-                                 down_mouse_y,
-                                 handle_centroids.row(moving_handle));
-    }
-    get_new_handle_locations();
+    if ((mouse_mode == TRANSLATE) || (mouse_mode == ROTATE))
+    {
+        if (mouse_mode == TRANSLATE) {
+            translation = computeTranslation(viewer,
+                mouse_x,
+                down_mouse_x,
+                mouse_y,
+                down_mouse_y,
+                handle_centroids.row(moving_handle));
+        }
+        else {
+            rotation = computeRotation(viewer,
+                mouse_x,
+                down_mouse_x,
+                mouse_y,
+                down_mouse_y,
+                handle_centroids.row(moving_handle));
+        }
+        get_new_handle_locations();
+        auto start = high_resolution_clock::now();
 #ifndef UPDATE_ONLY_ON_UP
-    solve(viewer);
-    down_mouse_x = mouse_x;
-    down_mouse_y = mouse_y;
+        solve(viewer);
+        down_mouse_x = mouse_x;
+        down_mouse_y = mouse_y;
 #endif
-    return true;
+        auto stop = high_resolution_clock::now();
+        auto duration = duration_cast<std::chrono::milliseconds>(stop - start);
+        total_time += duration.count();
+        count_It++;
+        std::cout << "Execution time:" << duration.count() << std::endl;
+        return true;
 
-  }
-  return false;
+    }
+    return false;
 }
 
 bool callback_mouse_up(Viewer& viewer, int button, int modifier)
 {
-  if (!doit)
-    return false;
-  doit = false;
-  if (mouse_mode == SELECT)
-  {
-    selected_v.resize(0,1);
-    lasso->strokeFinish(selected_v);
-    return true;
-  }
+    if (!doit)
+        return false;
+    doit = false;
+    if (mouse_mode == SELECT)
+    {
+        selected_v.resize(0, 1);
+        lasso->strokeFinish(selected_v);
+        return true;
+    }
 
-  if ((mouse_mode == TRANSLATE) || (mouse_mode == ROTATE))
-  {
+    if ((mouse_mode == TRANSLATE) || (mouse_mode == ROTATE))
+    {
 #ifdef UPDATE_ONLY_ON_UP
-    if(moving_handle>=0)
-      solve(viewer);
+        if (moving_handle >= 0)
+            solve(viewer);
 #endif
-    translation.setZero();
-    rotation.setZero(); rotation[3] = 1.;
-    moving_handle = -1;
+        translation.setZero();
+        rotation.setZero(); rotation[3] = 1.;
+        moving_handle = -1;
 
-    compute_handle_centroids();
+        compute_handle_centroids();
 
-    return true;
-  }
+        return true;
+    }
 
-  return false;
+    return false;
 };
 
 
 bool callback_pre_draw(Viewer& viewer)
 {
-  // initialize vertex colors
-  vertex_colors = Eigen::MatrixXd::Constant(V.rows(),3,.9);
+    // initialize vertex colors
+    vertex_colors = Eigen::MatrixXd::Constant(V.rows(), 3, .9);
 
-  // first, color constraints
-  int num = handle_id.maxCoeff();
-  if (num == 0)
-    num = 1;
-  for (int i = 0; i<V.rows(); ++i)
-    if (handle_id[i]!=-1)
+    // first, color constraints
+    int num = handle_id.maxCoeff();
+    if (num == 0)
+        num = 1;
+    for (int i = 0; i < V.rows(); ++i)
+        if (handle_id[i] != -1)
+        {
+            int r = handle_id[i] % MAXNUMREGIONS;
+            vertex_colors.row(i) << regionColors[r][0], regionColors[r][1], regionColors[r][2];
+        }
+    // then, color selection
+    for (int i = 0; i < selected_v.size(); ++i)
+        vertex_colors.row(selected_v[i]) << 131. / 255, 131. / 255, 131. / 255.;
+
+    viewer.data().set_colors(vertex_colors);
+    viewer.data().V_material_specular.fill(0);
+    viewer.data().V_material_specular.col(3).fill(1);
+    viewer.data().dirty |= igl::opengl::MeshGL::DIRTY_DIFFUSE | igl::opengl::MeshGL::DIRTY_SPECULAR;
+
+
+    //clear points and lines
+    viewer.data().set_points(Eigen::MatrixXd::Zero(0, 3), Eigen::MatrixXd::Zero(0, 3));
+    viewer.data().set_edges(Eigen::MatrixXd::Zero(0, 3), Eigen::MatrixXi::Zero(0, 3), Eigen::MatrixXd::Zero(0, 3));
+
+    //draw the stroke of the selection
+    for (unsigned int i = 0; i < lasso->strokePoints.size(); ++i)
     {
-      int r = handle_id[i] % MAXNUMREGIONS;
-      vertex_colors.row(i) << regionColors[r][0], regionColors[r][1], regionColors[r][2];
+        viewer.data().add_points(lasso->strokePoints[i], Eigen::RowVector3d(0.4, 0.4, 0.4));
+        if (i > 1)
+            viewer.data().add_edges(lasso->strokePoints[i - 1], lasso->strokePoints[i], Eigen::RowVector3d(0.7, 0.7, 0.7));
     }
-  // then, color selection
-  for (int i = 0; i<selected_v.size(); ++i)
-    vertex_colors.row(selected_v[i]) << 131./255, 131./255, 131./255.;
 
-  viewer.data().set_colors(vertex_colors);
-  viewer.data().V_material_specular.fill(0);
-  viewer.data().V_material_specular.col(3).fill(1);
-  viewer.data().dirty |= igl::opengl::MeshGL::DIRTY_DIFFUSE | igl::opengl::MeshGL::DIRTY_SPECULAR;
+    // update the vertex position all the time
+    viewer.data().V.resize(V.rows(), 3);
+    viewer.data().V << V;
 
-
-  //clear points and lines
-  viewer.data().set_points(Eigen::MatrixXd::Zero(0,3), Eigen::MatrixXd::Zero(0,3));
-  viewer.data().set_edges(Eigen::MatrixXd::Zero(0,3), Eigen::MatrixXi::Zero(0,3), Eigen::MatrixXd::Zero(0,3));
-
-  //draw the stroke of the selection
-  for (unsigned int i = 0; i<lasso->strokePoints.size(); ++i)
-  {
-    viewer.data().add_points(lasso->strokePoints[i],Eigen::RowVector3d(0.4,0.4,0.4));
-    if(i>1)
-      viewer.data().add_edges(lasso->strokePoints[i-1], lasso->strokePoints[i], Eigen::RowVector3d(0.7,0.7,0.7));
-  }
-
-  // update the vertex position all the time
-  viewer.data().V.resize(V.rows(),3);
-  viewer.data().V << V;
-
-  viewer.data().dirty |= igl::opengl::MeshGL::DIRTY_POSITION;
+    viewer.data().dirty |= igl::opengl::MeshGL::DIRTY_POSITION;
 
 #ifdef UPDATE_ONLY_ON_UP
-  //draw only the moving parts with a white line
-  if (moving_handle>=0)
-  {
-    Eigen::MatrixXd edges(3*F.rows(),6);
-    int num_edges = 0;
-    for (int fi = 0; fi<F.rows(); ++fi)
+    //draw only the moving parts with a white line
+    if (moving_handle >= 0)
     {
-      int firstPickedVertex = -1;
-      for(int vi = 0; vi<3 ; ++vi)
-        if (handle_id[F(fi,vi)] == moving_handle)
+        Eigen::MatrixXd edges(3 * F.rows(), 6);
+        int num_edges = 0;
+        for (int fi = 0; fi < F.rows(); ++fi)
         {
-          firstPickedVertex = vi;
-          break;
+            int firstPickedVertex = -1;
+            for (int vi = 0; vi < 3; ++vi)
+                if (handle_id[F(fi, vi)] == moving_handle)
+                {
+                    firstPickedVertex = vi;
+                    break;
+                }
+            if (firstPickedVertex == -1)
+                continue;
+
+
+            Eigen::Matrix3d points;
+            for (int vi = 0; vi < 3; ++vi)
+            {
+                int vertex_id = F(fi, vi);
+                if (handle_id[vertex_id] == moving_handle)
+                {
+                    int index = -1;
+                    // if face is already constrained, find index in the constraints
+                    (handle_vertices.array() - vertex_id).cwiseAbs().minCoeff(&index);
+                    points.row(vi) = handle_vertex_positions.row(index);
+                }
+                else
+                    points.row(vi) = V.row(vertex_id);
+
+            }
+            edges.row(num_edges++) << points.row(0), points.row(1);
+            edges.row(num_edges++) << points.row(1), points.row(2);
+            edges.row(num_edges++) << points.row(2), points.row(0);
         }
-      if(firstPickedVertex==-1)
-        continue;
+        edges.conservativeResize(num_edges, Eigen::NoChange);
+        viewer.data().add_edges(edges.leftCols(3), edges.rightCols(3), Eigen::RowVector3d(0.9, 0.9, 0.9));
 
-
-      Eigen::Matrix3d points;
-      for(int vi = 0; vi<3; ++vi)
-      {
-        int vertex_id = F(fi,vi);
-        if (handle_id[vertex_id] == moving_handle)
-        {
-          int index = -1;
-          // if face is already constrained, find index in the constraints
-          (handle_vertices.array()-vertex_id).cwiseAbs().minCoeff(&index);
-          points.row(vi) = handle_vertex_positions.row(index);
-        }
-        else
-          points.row(vi) =  V.row(vertex_id);
-
-      }
-      edges.row(num_edges++) << points.row(0), points.row(1);
-      edges.row(num_edges++) << points.row(1), points.row(2);
-      edges.row(num_edges++) << points.row(2), points.row(0);
     }
-    edges.conservativeResize(num_edges, Eigen::NoChange);
-    viewer.data().add_edges(edges.leftCols(3), edges.rightCols(3), Eigen::RowVector3d(0.9,0.9,0.9));
-
-  }
 #endif
-  return false;
+    return false;
 
 }
 
 bool callback_key_down(Viewer& viewer, unsigned char key, int modifiers)
 {
-  bool handled = false;
-  if (key == 'S')
-  {
-    mouse_mode = SELECT;
-    handled = true;
-  }
+    bool handled = false;
+    if (key == 'S')
+    {
+        mouse_mode = SELECT;
+        handled = true;
+    }
 
-  if ((key == 'T') && (modifiers == IGL_MOD_ALT))
-  {
-    mouse_mode = TRANSLATE;
-    handled = true;
-  }
+    if ((key == 'Y') && (modifiers == IGL_MOD_ALT))
+    {
+        mouse_mode = TRANSLATE;
+        handled = true;
+    }
 
-  if ((key == 'R') && (modifiers == IGL_MOD_ALT))
-  {
-    mouse_mode = ROTATE;
-    handled = true;
-  }
-  if (key == 'A')
-  {
-    applySelection();
-    callback_key_down(viewer, '1', 0);
-    handled = true;
-  }
-  // if (key == '2')
-  // viewer.core.align_camera_position(B);
-  //  }
+    if ((key == 'J') && (modifiers == IGL_MOD_ALT))
+    {
+        mouse_mode = ROTATE;
+        handled = true;
+    }
+    if (key == 'A')
+    {
+        applySelection();
+        // callback_key_down(viewer, '1', 0);
+        handled = true;
+    }
+    if (key == '1')
+    {
+        V = Vb;
 
-  //viewer.ngui->refresh();
-  return handled;
+    }
+    if (key == '2') {
+        V = Vb_prime;
+    }
+    if (key == '3') {
+        V = Vs_prime;
+    }
+
+    // viewer.ngui->refresh();
+    return handled;
 }
 
 void onNewHandleID()
 {
-  //store handle vertices too
-  int numFree = (handle_id.array() == -1).cast<int>().sum();
-  int num_handle_vertices = V.rows() - numFree;
-  handle_vertices.setZero(num_handle_vertices);
-  handle_vertex_positions.setZero(num_handle_vertices,3);
+    //store handle vertices too
+    int numFree = (handle_id.array() == -1).cast<int>().sum();
+    int num_handle_vertices = V.rows() - numFree;
+    handle_vertices.setZero(num_handle_vertices);
+    handle_vertex_positions.setZero(num_handle_vertices, 3);
 
-  int count = 0;
-  for (long vi = 0; vi<V.rows(); ++vi)
-    if(handle_id[vi] >=0)
-      handle_vertices[count++] = vi;
+    int count = 0;
+    for (long vi = 0; vi < V.rows(); ++vi)
+        if (handle_id[vi] >= 0)
+            handle_vertices[count++] = vi;
 
-  compute_handle_centroids();
+    compute_handle_centroids();
 }
 
 void applySelection()
 {
-  int index = handle_id.maxCoeff()+1;
-  for (int i =0; i<selected_v.rows(); ++i)
-  {
-    const int selected_vertex = selected_v[i];
-    if (handle_id[selected_vertex] == -1)
-      handle_id[selected_vertex] = index;
-  }
-  selected_v.resize(0,1);
+    int index = handle_id.maxCoeff() + 1;
+    for (int i = 0; i < selected_v.rows(); ++i)
+    {
+        const int selected_vertex = selected_v[i];
+        if (handle_id[selected_vertex] == -1)
+            handle_id[selected_vertex] = index;
+    }
+    selected_v.resize(0, 1);
 
-  onNewHandleID();
+    onNewHandleID();
+    buildSystem(V);
+    V_origin = V;
 }
 
 void compute_handle_centroids()
 {
-  //compute centroids of handles
-  int num_handles = handle_id.maxCoeff()+1;
-  handle_centroids.setZero(num_handles,3);
+    //compute centroids of handles
+    int num_handles = handle_id.maxCoeff() + 1;
+    handle_centroids.setZero(num_handles, 3);
 
-  Eigen::VectorXi num; num.setZero(num_handles,1);
-  for (long vi = 0; vi<V.rows(); ++vi)
-  {
-    int r = handle_id[vi];
-    if ( r!= -1)
+    Eigen::VectorXi num; num.setZero(num_handles, 1);
+    for (long vi = 0; vi < V.rows(); ++vi)
     {
-      handle_centroids.row(r) += V.row(vi);
-      num[r]++;
+        int r = handle_id[vi];
+        if (r != -1)
+        {
+            handle_centroids.row(r) += V.row(vi);
+            num[r]++;
+        }
     }
-  }
 
-  for (long i = 0; i<num_handles; ++i)
-    handle_centroids.row(i) = handle_centroids.row(i).array()/num[i];
+    for (long i = 0; i < num_handles; ++i)
+        handle_centroids.row(i) = handle_centroids.row(i).array() / num[i];
 
 }
 
 //computes translation for the vertices of the moving handle based on the mouse motion
-Eigen::Vector3f computeTranslation (Viewer& viewer,
-                                    int mouse_x,
-                                    int from_x,
-                                    int mouse_y,
-                                    int from_y,
-                                    Eigen::RowVector3d pt3D)
+Eigen::Vector3f computeTranslation(Viewer& viewer,
+    int mouse_x,
+    int from_x,
+    int mouse_y,
+    int from_y,
+    Eigen::RowVector3d pt3D)
 {
-  Eigen::Matrix4f modelview = viewer.core.view;// * viewer.data().model;
-  //project the given point (typically the handle centroid) to get a screen space depth
-  Eigen::Vector3f proj = igl::project(pt3D.transpose().cast<float>().eval(),
-                                      modelview,
-                                      viewer.core.proj,
-                                      viewer.core.viewport);
-  float depth = proj[2];
+    Eigen::Matrix4f modelview = viewer.core.view;// * viewer.data().model;
+    //project the given point (typically the handle centroid) to get a screen space depth
+    Eigen::Vector3f proj = igl::project(pt3D.transpose().cast<float>().eval(),
+        modelview,
+        viewer.core.proj,
+        viewer.core.viewport);
+    float depth = proj[2];
 
-  double x, y;
-  Eigen::Vector3f pos1, pos0;
+    double x, y;
+    Eigen::Vector3f pos1, pos0;
 
-  //unproject from- and to- points
-  x = mouse_x;
-  y = viewer.core.viewport(3) - mouse_y;
-  pos1 = igl::unproject(Eigen::Vector3f(x,y,depth),
-                        modelview,
-                        viewer.core.proj,
-                        viewer.core.viewport);
+    //unproject from- and to- points
+    x = mouse_x;
+    y = viewer.core.viewport(3) - mouse_y;
+    pos1 = igl::unproject(Eigen::Vector3f(x, y, depth),
+        modelview,
+        viewer.core.proj,
+        viewer.core.viewport);
 
 
-  x = from_x;
-  y = viewer.core.viewport(3) - from_y;
-  pos0 = igl::unproject(Eigen::Vector3f(x,y,depth),
-                        modelview,
-                        viewer.core.proj,
-                        viewer.core.viewport);
+    x = from_x;
+    y = viewer.core.viewport(3) - from_y;
+    pos0 = igl::unproject(Eigen::Vector3f(x, y, depth),
+        modelview,
+        viewer.core.proj,
+        viewer.core.viewport);
 
-  //translation is the vector connecting the two
-  Eigen::Vector3f translation = pos1 - pos0;
-  return translation;
+    //translation is the vector connecting the two
+    Eigen::Vector3f translation = pos1 - pos0;
+    return translation;
 
 }
 
 
 //computes translation for the vertices of the moving handle based on the mouse motion
 Eigen::Vector4f computeRotation(Viewer& viewer,
-                                int mouse_x,
-                                int from_x,
-                                int mouse_y,
-                                int from_y,
-                                Eigen::RowVector3d pt3D)
+    int mouse_x,
+    int from_x,
+    int mouse_y,
+    int from_y,
+    Eigen::RowVector3d pt3D)
 {
 
-  Eigen::Vector4f rotation;
-  rotation.setZero();
-  rotation[3] = 1.;
+    Eigen::Vector4f rotation;
+    rotation.setZero();
+    rotation[3] = 1.;
 
-  Eigen::Matrix4f modelview = viewer.core.view;// * viewer.data().model;
+    Eigen::Matrix4f modelview = viewer.core.view;// * viewer.data().model;
 
-  //initialize a trackball around the handle that is being rotated
-  //the trackball has (approximately) width w and height h
-  double w = viewer.core.viewport[2]/8;
-  double h = viewer.core.viewport[3]/8;
+    //initialize a trackball around the handle that is being rotated
+    //the trackball has (approximately) width w and height h
+    double w = viewer.core.viewport[2] / 8;
+    double h = viewer.core.viewport[3] / 8;
 
-  //the mouse motion has to be expressed with respect to its center of mass
-  //(i.e. it should approximately fall inside the region of the trackball)
+    //the mouse motion has to be expressed with respect to its center of mass
+    //(i.e. it should approximately fall inside the region of the trackball)
 
-  //project the given point on the handle(centroid)
-  Eigen::Vector3f proj = igl::project(pt3D.transpose().cast<float>().eval(),
-                                      modelview,
-                                      viewer.core.proj,
-                                      viewer.core.viewport);
-  proj[1] = viewer.core.viewport[3] - proj[1];
+    //project the given point on the handle(centroid)
+    Eigen::Vector3f proj = igl::project(pt3D.transpose().cast<float>().eval(),
+        modelview,
+        viewer.core.proj,
+        viewer.core.viewport);
+    proj[1] = viewer.core.viewport[3] - proj[1];
 
-  //express the mouse points w.r.t the centroid
-  from_x -= proj[0]; mouse_x -= proj[0];
-  from_y -= proj[1]; mouse_y -= proj[1];
+    //express the mouse points w.r.t the centroid
+    from_x -= proj[0]; mouse_x -= proj[0];
+    from_y -= proj[1]; mouse_y -= proj[1];
 
-  //shift so that the range is from 0-w and 0-h respectively (similarly to a standard viewport)
-  from_x += w/2; mouse_x += w/2;
-  from_y += h/2; mouse_y += h/2;
+    //shift so that the range is from 0-w and 0-h respectively (similarly to a standard viewport)
+    from_x += w / 2; mouse_x += w / 2;
+    from_y += h / 2; mouse_y += h / 2;
 
-  //get rotation from trackball
-  Eigen::Vector4f drot = viewer.core.trackball_angle.coeffs();
-  Eigen::Vector4f drot_conj;
-  igl::quat_conjugate(drot.data(), drot_conj.data());
-  igl::trackball(w, h, float(1.), rotation.data(), from_x, from_y, mouse_x, mouse_y, rotation.data());
+    //get rotation from trackball
+    Eigen::Vector4f drot = viewer.core.trackball_angle.coeffs();
+    Eigen::Vector4f drot_conj;
+    igl::quat_conjugate(drot.data(), drot_conj.data());
+    igl::trackball(w, h, float(1.), rotation.data(), from_x, from_y, mouse_x, mouse_y, rotation.data());
 
-  //account for the modelview rotation: prerotate by modelview (place model back to the original
-  //unrotated frame), postrotate by inverse modelview
-  Eigen::Vector4f out;
-  igl::quat_mult(rotation.data(), drot.data(), out.data());
-  igl::quat_mult(drot_conj.data(), out.data(), rotation.data());
-  return rotation;
+    //account for the modelview rotation: prerotate by modelview (place model back to the original
+    //unrotated frame), postrotate by inverse modelview
+    Eigen::Vector4f out;
+    igl::quat_mult(rotation.data(), drot.data(), out.data());
+    igl::quat_mult(drot_conj.data(), out.data(), rotation.data());
+    return rotation;
 }
