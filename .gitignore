@@ -865,3 +865,736 @@ assignment3/out/build/x64-Debug (default)/libigl-export.cmake
 assignment3/out/build/x64-Debug (default)/rules.ninja
 assignment3/out/build/x64-Debug (default)/Testing/Temporary/LastTest.log
 assignment3/out/build/x64-Debug (default)/VSInheritEnvironments.txt
+assignment1/assignment1.pdf
+assignment1/cmake/FindLIBIGL.cmake
+assignment1/CMakeLists.txt
+assignment1/data/3-times-subdivided-cube.off
+assignment1/data/coffeecup.off
+assignment1/data/cube.off
+assignment1/data/design.off
+assignment1/data/honda.off
+assignment1/data/reconstructed-bunny-1000.off
+assignment1/data/warrior.off
+assignment1/out/build/x64-Release/.cmake/api/v1/reply/codemodel-v2-ef2b078afee8807a35a3.json
+assignment1/out/build/x64-Release/.cmake/api/v1/reply/index-2021-04-15T06-50-12-0864.json
+assignment1/out/build/x64-Release/.cmake/api/v1/reply/target-assignment1_bin-RelWithDebInfo-b4ca40c6fe3abb7ad03a.json
+assignment1/out/build/x64-Release/.cmake/api/v1/reply/target-imgui-RelWithDebInfo-e3652070079c122efa17.json
+assignment1/photos/1-time-subdivision-over-cube.png
+assignment1/photos/2-times-subdivision-over-cube.png
+assignment1/photos/3-times-subdivision-over-cube.png
+assignment1/photos/cc1.png
+assignment1/photos/ccHonda.png
+assignment1/photos/design1.png
+assignment1/photos/design2.png
+assignment1/photos/design3.png
+assignment1/photos/design4.png
+assignment1/photos/design5.png
+assignment1/photos/extrude1.png
+assignment1/photos/extrude2.png
+assignment1/photos/extrude3.png
+assignment1/photos/honda-connection-components-1.png
+assignment1/photos/honda-connection-components-2.png
+assignment1/photos/honda-connection-components-3.png
+assignment1/photos/honda-connection-components-4.png
+assignment1/photos/model1.png
+assignment1/photos/model2.png
+assignment1/photos/model3.png
+assignment1/photos/model4.png
+assignment1/photos/original-cube.png
+assignment1/photos/vertex-to-face.png
+assignment1/photos/vertex-to-vertex.png
+assignment1/photos/warrior.png
+assignment1/photos/‏‏T1000.png
+assignment1/README.md
+assignment1/src/gui_utils.cpp
+assignment1/src/gui_utils.h
+assignment1/src/main.cpp
+assignment2/.vs/assignment2/v16/ipch/AutoPCH/43b9bd3d8bc659a3/WGL_CONTEXT.ipch
+assignment2/assignment2.pdf
+assignment2/cmake/FindLIBIGL.cmake
+assignment2/CMakeLists.txt
+assignment2/data/bunny-1000.off
+assignment2/data/bunny-500.off
+assignment2/data/cat.off
+assignment2/data/horse.off
+assignment2/data/hound.off
+assignment2/data/luigi.off
+assignment2/data/reconstructed-bunny-1000.off
+assignment2/data/reconstructed-bunny-500.off
+assignment2/data/reconstructed-cat.off
+assignment2/data/reconstructed-luigi.off
+assignment2/data/reconstructed-sphere.off
+assignment2/data/sphere.off
+assignment2/photos/1.png
+assignment2/photos/10.png
+assignment2/photos/11.png
+assignment2/photos/12.png
+assignment2/photos/13.png
+assignment2/photos/14.png
+assignment2/photos/15.jpeg
+assignment2/photos/15.PNG
+assignment2/photos/16.PNG
+assignment2/photos/17.PNG
+assignment2/photos/2.png
+assignment2/photos/3.png
+assignment2/photos/4.png
+assignment2/photos/5.png
+assignment2/photos/6.png
+assignment2/photos/7.png
+assignment2/photos/8.png
+assignment2/photos/9.png
+assignment2/README.md
+assignment2/src/main.cpp
+assignment3/assignment3.pdf
+assignment3/cmake/FindLIBIGL.cmake
+assignment3/CMakeLists.txt
+assignment3/data/bunny.off
+assignment3/data/cathead.obj
+assignment3/data/cow.obj
+assignment3/data/gargoyle_cut.obj
+assignment3/data/hemisphere.off
+assignment3/data/hemisphere_non_convex_boundary.off
+assignment3/data/max.off
+assignment3/data/Octo_cut2.obj
+assignment3/photos/bunny cotangent laplacian Angle.PNG
+assignment3/photos/bunny cotangent laplacian Edge Length.PNG
+assignment3/photos/bunny cotangent laplacian UV Angle.PNG
+assignment3/photos/bunny cotangent laplacian UV Edge Length.PNG
+assignment3/photos/bunny cotangent laplacian UV.PNG
+assignment3/photos/bunny cotangent laplacian.PNG
+assignment3/photos/bunny LSCM Angle.PNG
+assignment3/photos/bunny LSCM Edge Length.PNG
+assignment3/photos/bunny LSCM UV Angle.PNG
+assignment3/photos/bunny LSCM UV Edge Length.PNG
+assignment3/photos/bunny LSCM UV.PNG
+assignment3/photos/bunny LSCM.PNG
+assignment3/photos/bunny uniform laplacian Angle.PNG
+assignment3/photos/bunny uniform laplacian Edge Length.PNG
+assignment3/photos/bunny uniform laplacian UV Angle.PNG
+assignment3/photos/bunny uniform laplacian UV Edge Length.PNG
+assignment3/photos/bunny uniform laplacian UV.PNG
+assignment3/photos/bunny uniform laplacian.PNG
+assignment3/photos/cathead cotangent laplacian Angle.PNG
+assignment3/photos/cathead cotangent laplacian Edge Length.PNG
+assignment3/photos/cathead cotangent laplacian UV Angle.PNG
+assignment3/photos/cathead cotangent laplacian UV Edge Length.PNG
+assignment3/photos/cathead cotangent laplacian UV.PNG
+assignment3/photos/cathead cotangent laplacian.PNG
+assignment3/photos/cathead LSCM Angle.PNG
+assignment3/photos/cathead LSCM Edge Length.PNG
+assignment3/photos/cathead LSCM UV Angle.PNG
+assignment3/photos/cathead LSCM UV Edge Length.PNG
+assignment3/photos/cathead LSCM UV.PNG
+assignment3/photos/cathead LSCM.PNG
+assignment3/photos/cathead uniform laplacian Angle.PNG
+assignment3/photos/cathead uniform laplacian Edge Length.PNG
+assignment3/photos/cathead uniform laplacian UV angle.PNG
+assignment3/photos/cathead uniform laplacian UV Edge Length.PNG
+assignment3/photos/cathead uniform laplacian UV.PNG
+assignment3/photos/cathead uniform laplacian.PNG
+assignment3/photos/hemisphere cotangent laplacian angle preserve.PNG
+assignment3/photos/hemisphere cotangent laplacian edge length preserve.PNG
+assignment3/photos/hemisphere cotangent laplacian parametrization angle preserve.PNG
+assignment3/photos/hemisphere cotangent laplacian parametrization edge length preserve.PNG
+assignment3/photos/hemisphere cotangent laplacian parametrization.PNG
+assignment3/photos/hemisphere cotangent laplacian.PNG
+assignment3/photos/hemisphere LSCM angle preserve.PNG
+assignment3/photos/hemisphere LSCM edge length preserve.PNG
+assignment3/photos/hemisphere LSCM Parametrization angle preserve.PNG
+assignment3/photos/hemisphere LSCM Parametrization edge length preserve.PNG
+assignment3/photos/hemisphere LSCM Parametrization.PNG
+assignment3/photos/hemisphere LSCM.PNG
+assignment3/photos/hemisphere uniform laplacian angle preserve.PNG
+assignment3/photos/hemisphere uniform laplacian edge length preserve.PNG
+assignment3/photos/hemisphere uniform laplacian parametrization angle preserve.PNG
+assignment3/photos/hemisphere uniform laplacian parametrization edge length preserve.PNG
+assignment3/photos/hemisphere uniform laplacian parametrization.PNG
+assignment3/photos/hemisphere uniform laplacian.PNG
+assignment3/README.md
+assignment3/src/main.cpp
+assignment1/assignment1.pdf
+assignment1/cmake/FindLIBIGL.cmake
+assignment1/CMakeLists.txt
+assignment1/data/3-times-subdivided-cube.off
+assignment1/data/coffeecup.off
+assignment1/data/cube.off
+assignment1/data/design.off
+assignment1/data/honda.off
+assignment1/data/reconstructed-bunny-1000.off
+assignment1/data/warrior.off
+assignment1/out/build/x64-Release/.cmake/api/v1/reply/codemodel-v2-ef2b078afee8807a35a3.json
+assignment1/out/build/x64-Release/.cmake/api/v1/reply/index-2021-04-15T06-50-12-0864.json
+assignment1/out/build/x64-Release/.cmake/api/v1/reply/target-assignment1_bin-RelWithDebInfo-b4ca40c6fe3abb7ad03a.json
+assignment1/out/build/x64-Release/.cmake/api/v1/reply/target-imgui-RelWithDebInfo-e3652070079c122efa17.json
+assignment1/photos/1-time-subdivision-over-cube.png
+assignment1/photos/2-times-subdivision-over-cube.png
+assignment1/photos/3-times-subdivision-over-cube.png
+assignment1/photos/cc1.png
+assignment1/photos/ccHonda.png
+assignment1/photos/design1.png
+assignment1/photos/design2.png
+assignment1/photos/design3.png
+assignment1/photos/design4.png
+assignment1/photos/design5.png
+assignment1/photos/extrude1.png
+assignment1/photos/extrude2.png
+assignment1/photos/extrude3.png
+assignment1/photos/honda-connection-components-1.png
+assignment1/photos/honda-connection-components-2.png
+assignment1/photos/honda-connection-components-3.png
+assignment1/photos/honda-connection-components-4.png
+assignment1/photos/model1.png
+assignment1/photos/model2.png
+assignment1/photos/model3.png
+assignment1/photos/model4.png
+assignment1/photos/original-cube.png
+assignment1/photos/vertex-to-face.png
+assignment1/photos/vertex-to-vertex.png
+assignment1/photos/warrior.png
+assignment1/photos/‏‏T1000.png
+assignment1/README.md
+assignment1/src/gui_utils.cpp
+assignment1/src/gui_utils.h
+assignment1/src/main.cpp
+assignment2/.vs/assignment2/v16/ipch/AutoPCH/43b9bd3d8bc659a3/WGL_CONTEXT.ipch
+assignment2/assignment2.pdf
+assignment2/cmake/FindLIBIGL.cmake
+assignment2/CMakeLists.txt
+assignment2/data/bunny-1000.off
+assignment2/data/bunny-500.off
+assignment2/data/cat.off
+assignment2/data/horse.off
+assignment2/data/hound.off
+assignment2/data/luigi.off
+assignment2/data/reconstructed-bunny-1000.off
+assignment2/data/reconstructed-bunny-500.off
+assignment2/data/reconstructed-cat.off
+assignment2/data/reconstructed-luigi.off
+assignment2/data/reconstructed-sphere.off
+assignment2/data/sphere.off
+assignment2/photos/1.png
+assignment2/photos/10.png
+assignment2/photos/11.png
+assignment2/photos/12.png
+assignment2/photos/13.png
+assignment2/photos/14.png
+assignment2/photos/15.jpeg
+assignment2/photos/15.PNG
+assignment2/photos/16.PNG
+assignment2/photos/17.PNG
+assignment2/photos/2.png
+assignment2/photos/3.png
+assignment2/photos/4.png
+assignment2/photos/5.png
+assignment2/photos/6.png
+assignment2/photos/7.png
+assignment2/photos/8.png
+assignment2/photos/9.png
+assignment2/README.md
+assignment2/src/main.cpp
+assignment3/assignment3.pdf
+assignment3/cmake/FindLIBIGL.cmake
+assignment3/CMakeLists.txt
+assignment3/data/bunny.off
+assignment3/data/cathead.obj
+assignment3/data/cow.obj
+assignment3/data/gargoyle_cut.obj
+assignment3/data/hemisphere.off
+assignment3/data/hemisphere_non_convex_boundary.off
+assignment3/data/max.off
+assignment3/data/Octo_cut2.obj
+assignment3/photos/bunny cotangent laplacian Angle.PNG
+assignment3/photos/bunny cotangent laplacian Edge Length.PNG
+assignment3/photos/bunny cotangent laplacian UV Angle.PNG
+assignment3/photos/bunny cotangent laplacian UV Edge Length.PNG
+assignment3/photos/bunny cotangent laplacian UV.PNG
+assignment3/photos/bunny cotangent laplacian.PNG
+assignment3/photos/bunny LSCM Angle.PNG
+assignment3/photos/bunny LSCM Edge Length.PNG
+assignment3/photos/bunny LSCM UV Angle.PNG
+assignment3/photos/bunny LSCM UV Edge Length.PNG
+assignment3/photos/bunny LSCM UV.PNG
+assignment3/photos/bunny LSCM.PNG
+assignment3/photos/bunny uniform laplacian Angle.PNG
+assignment3/photos/bunny uniform laplacian Edge Length.PNG
+assignment3/photos/bunny uniform laplacian UV Angle.PNG
+assignment3/photos/bunny uniform laplacian UV Edge Length.PNG
+assignment3/photos/bunny uniform laplacian UV.PNG
+assignment3/photos/bunny uniform laplacian.PNG
+assignment3/photos/cathead cotangent laplacian Angle.PNG
+assignment3/photos/cathead cotangent laplacian Edge Length.PNG
+assignment3/photos/cathead cotangent laplacian UV Angle.PNG
+assignment3/photos/cathead cotangent laplacian UV Edge Length.PNG
+assignment3/photos/cathead cotangent laplacian UV.PNG
+assignment3/photos/cathead cotangent laplacian.PNG
+assignment3/photos/cathead LSCM Angle.PNG
+assignment3/photos/cathead LSCM Edge Length.PNG
+assignment3/photos/cathead LSCM UV Angle.PNG
+assignment3/photos/cathead LSCM UV Edge Length.PNG
+assignment3/photos/cathead LSCM UV.PNG
+assignment3/photos/cathead LSCM.PNG
+assignment3/photos/cathead uniform laplacian Angle.PNG
+assignment3/photos/cathead uniform laplacian Edge Length.PNG
+assignment3/photos/cathead uniform laplacian UV angle.PNG
+assignment3/photos/cathead uniform laplacian UV Edge Length.PNG
+assignment3/photos/cathead uniform laplacian UV.PNG
+assignment3/photos/cathead uniform laplacian.PNG
+assignment3/photos/hemisphere cotangent laplacian angle preserve.PNG
+assignment3/photos/hemisphere cotangent laplacian edge length preserve.PNG
+assignment3/photos/hemisphere cotangent laplacian parametrization angle preserve.PNG
+assignment3/photos/hemisphere cotangent laplacian parametrization edge length preserve.PNG
+assignment3/photos/hemisphere cotangent laplacian parametrization.PNG
+assignment3/photos/hemisphere cotangent laplacian.PNG
+assignment3/photos/hemisphere LSCM angle preserve.PNG
+assignment3/photos/hemisphere LSCM edge length preserve.PNG
+assignment3/photos/hemisphere LSCM Parametrization angle preserve.PNG
+assignment3/photos/hemisphere LSCM Parametrization edge length preserve.PNG
+assignment3/photos/hemisphere LSCM Parametrization.PNG
+assignment3/photos/hemisphere LSCM.PNG
+assignment3/photos/hemisphere uniform laplacian angle preserve.PNG
+assignment3/photos/hemisphere uniform laplacian edge length preserve.PNG
+assignment3/photos/hemisphere uniform laplacian parametrization angle preserve.PNG
+assignment3/photos/hemisphere uniform laplacian parametrization edge length preserve.PNG
+assignment3/photos/hemisphere uniform laplacian parametrization.PNG
+assignment3/photos/hemisphere uniform laplacian.PNG
+assignment3/README.md
+assignment3/src/main.cpp
+assignment4/.vs/assignment4/v16/.suo
+assignment4/.vs/assignment4/v16/Browse.VC.db
+assignment4/.vs/assignment4/v16/Browse.VC.db-shm
+assignment4/.vs/assignment4/v16/Browse.VC.db-wal
+assignment4/.vs/assignment4/v16/Browse.VC.opendb
+assignment4/.vs/assignment4/v16/ipch/AutoPCH/2823494d82eeae36/COLORS.ipch
+assignment4/.vs/assignment4/v16/ipch/AutoPCH/95c0dfe6a7e21adf/MAIN.ipch
+assignment4/.vs/assignment4/v16/ipch/AutoPCH/d9e734ccfb5fcc3e/LASSO.ipch
+assignment4/.vs/CMake Overview
+assignment4/.vs/ProjectSettings.json
+assignment4/.vs/slnx.sqlite
+assignment2/.vs/assignment2/v16/ipch/AutoPCH/43b9bd3d8bc659a3/WGL_CONTEXT.ipch
+assignment2/assignment2.pdf
+assignment2/cmake/FindLIBIGL.cmake
+assignment2/CMakeLists.txt
+assignment2/data/bunny-1000.off
+assignment2/data/bunny-500.off
+assignment2/data/cat.off
+assignment2/data/horse.off
+assignment2/data/hound.off
+assignment2/data/luigi.off
+assignment2/data/reconstructed-bunny-1000.off
+assignment2/data/reconstructed-bunny-500.off
+assignment2/data/reconstructed-cat.off
+assignment2/data/reconstructed-luigi.off
+assignment2/data/reconstructed-sphere.off
+assignment2/data/sphere.off
+assignment2/photos/1.png
+assignment2/photos/10.png
+assignment2/photos/11.png
+assignment2/photos/12.png
+assignment2/photos/13.png
+assignment2/photos/14.png
+assignment2/photos/15.jpeg
+assignment2/photos/15.PNG
+assignment2/photos/16.PNG
+assignment2/photos/17.PNG
+assignment2/photos/2.png
+assignment2/photos/3.png
+assignment2/photos/4.png
+assignment2/photos/5.png
+assignment2/photos/6.png
+assignment2/photos/7.png
+assignment2/photos/8.png
+assignment2/photos/9.png
+assignment2/README.md
+assignment2/src/main.cpp
+assignment4/.vs/VSWorkspaceState.json
+assignment2/.vs/assignment2/v16/ipch/AutoPCH/43b9bd3d8bc659a3/WGL_CONTEXT.ipch
+assignment2/assignment2.pdf
+assignment2/cmake/FindLIBIGL.cmake
+assignment2/CMakeLists.txt
+assignment2/data/bunny-1000.off
+assignment2/data/bunny-500.off
+assignment2/data/cat.off
+assignment2/data/horse.off
+assignment2/data/hound.off
+assignment2/data/luigi.off
+assignment2/data/reconstructed-bunny-1000.off
+assignment2/data/reconstructed-bunny-500.off
+assignment2/data/reconstructed-cat.off
+assignment2/data/reconstructed-luigi.off
+assignment2/data/reconstructed-sphere.off
+assignment2/data/sphere.off
+assignment2/photos/1.png
+assignment2/photos/10.png
+assignment2/photos/11.png
+assignment2/photos/12.png
+assignment2/photos/13.png
+assignment2/photos/14.png
+assignment2/photos/15.jpeg
+assignment2/photos/15.PNG
+assignment2/photos/16.PNG
+assignment2/photos/17.PNG
+assignment2/photos/2.png
+assignment2/photos/3.png
+assignment2/photos/4.png
+assignment2/photos/5.png
+assignment2/photos/6.png
+assignment2/photos/7.png
+assignment2/photos/8.png
+assignment2/photos/9.png
+assignment2/README.md
+assignment2/src/main.cpp
+assignment5/.vs/assignment5/v16/.suo
+assignment5/.vs/assignment5/v16/Browse.VC.db
+assignment5/.vs/assignment5/v16/Browse.VC.db-shm
+assignment5/.vs/assignment5/v16/Browse.VC.db-wal
+assignment5/.vs/assignment5/v16/Browse.VC.opendb
+assignment5/.vs/assignment5/v16/ipch/AutoPCH/27e6d0396d69e68/MAIN.ipch
+assignment5/.vs/assignment5/v16/ipch/AutoPCH/86e2dd5ea2e80ffa/TOTALENERGYFUNCTION.ipch
+assignment5/.vs/assignment5/v16/ipch/AutoPCH/99696bb03b203e06/TEST_ROSENBROCK.ipch
+assignment5/.vs/assignment5/v16/ipch/AutoPCH/af116b0d6d45cec0/SIMULATIONMESH.ipch
+assignment5/.vs/CMake Overview
+assignment5/.vs/ProjectSettings.json
+assignment5/.vs/slnx.sqlite
+assignment5/Build/ALL_BUILD.vcxproj
+assignment5/Build/ALL_BUILD.vcxproj.filters
+assignment5/Build/assignment5.dir/Debug/assignment5.exe.recipe
+assignment5/Build/assignment5.dir/Debug/assignment5.tlog/assignment5.lastbuildstate
+assignment5/Build/assignment5.dir/Debug/assignment5.tlog/CL.16072.write.1.tlog
+assignment5/Build/assignment5.dir/Debug/assignment5.tlog/CL.command.1.tlog
+assignment5/Build/assignment5.dir/Debug/assignment5.tlog/CL.read.1.tlog
+assignment5/Build/assignment5.dir/Debug/assignment5.tlog/CustomBuild.command.1.tlog
+assignment5/Build/assignment5.dir/Debug/assignment5.tlog/CustomBuild.read.1.tlog
+assignment5/Build/assignment5.dir/Debug/assignment5.tlog/CustomBuild.write.1.tlog
+assignment5/Build/assignment5.dir/Debug/assignment5.tlog/link.command.1.tlog
+assignment5/Build/assignment5.dir/Debug/assignment5.tlog/link.read.1.tlog
+assignment5/Build/assignment5.dir/Debug/assignment5.tlog/link.write.1.tlog
+assignment5/Build/assignment5.dir/Debug/gui_utils.obj
+assignment5/Build/assignment5.dir/Debug/main.obj
+assignment5/Build/assignment5.dir/Debug/vc142.pdb
+assignment5/Build/assignment5.sln
+assignment5/Build/assignment5.vcxproj
+assignment5/Build/assignment5.vcxproj.filters
+assignment5/Build/assignment5_test_rosenbrock.dir/Debug/assignme.B1159B80.tlog/assignment5_test_rosenbrock.lastbuildstate
+assignment5/Build/assignment5_test_rosenbrock.dir/Debug/assignme.B1159B80.tlog/CL.command.1.tlog
+assignment5/Build/assignment5_test_rosenbrock.dir/Debug/assignme.B1159B80.tlog/CL.read.1.tlog
+assignment5/Build/assignment5_test_rosenbrock.dir/Debug/assignme.B1159B80.tlog/CL.write.1.tlog
+assignment5/Build/assignment5_test_rosenbrock.dir/Debug/assignme.B1159B80.tlog/CustomBuild.command.1.tlog
+assignment5/Build/assignment5_test_rosenbrock.dir/Debug/assignme.B1159B80.tlog/CustomBuild.read.1.tlog
+assignment5/Build/assignment5_test_rosenbrock.dir/Debug/assignme.B1159B80.tlog/CustomBuild.write.1.tlog
+assignment5/Build/assignment5_test_rosenbrock.dir/Debug/assignme.B1159B80.tlog/link.command.1.tlog
+assignment5/Build/assignment5_test_rosenbrock.dir/Debug/assignme.B1159B80.tlog/link.read.1.tlog
+assignment5/Build/assignment5_test_rosenbrock.dir/Debug/assignme.B1159B80.tlog/link.write.1.tlog
+assignment5/Build/assignment5_test_rosenbrock.dir/Debug/assignment5_test_rosenbrock.exe.recipe
+assignment5/Build/assignment5_test_rosenbrock.dir/Debug/test_rosenbrock.obj
+assignment5/Build/assignment5_test_rosenbrock.dir/Debug/vc142.pdb
+assignment5/Build/assignment5_test_rosenbrock.vcxproj
+assignment5/Build/assignment5_test_rosenbrock.vcxproj.filters
+assignment5/Build/cmake_install.cmake
+assignment5/Build/CMakeCache.txt
+assignment5/Build/CMakeFiles/0d5f58811581aa0a854ac0b7d8e91806/INSTALL_force.rule
+assignment5/Build/CMakeFiles/204be1fe6ce4a87d0abffc72bf10bdce/INSTALL_force.rule
+assignment5/Build/CMakeFiles/233d3471258302a46140754aa76cff93/INSTALL_force.rule
+assignment5/Build/CMakeFiles/3.19.0-rc1/CMakeCCompiler.cmake
+assignment5/Build/CMakeFiles/3.19.0-rc1/CMakeCXXCompiler.cmake
+assignment5/Build/CMakeFiles/3.19.0-rc1/CMakeDetermineCompilerABI_C.bin
+assignment5/Build/CMakeFiles/3.19.0-rc1/CMakeDetermineCompilerABI_CXX.bin
+assignment5/Build/CMakeFiles/3.19.0-rc1/CMakeRCCompiler.cmake
+assignment5/Build/CMakeFiles/3.19.0-rc1/CMakeSystem.cmake
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/CMakeCCompilerId.c
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/CompilerIdC.exe
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/CompilerIdC.vcxproj
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/Debug/CMakeCCompilerId.obj
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/Debug/CompilerIdC.exe.recipe
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/Debug/CompilerIdC.tlog/CL.command.1.tlog
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/Debug/CompilerIdC.tlog/CL.read.1.tlog
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/Debug/CompilerIdC.tlog/CL.write.1.tlog
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/Debug/CompilerIdC.tlog/CompilerIdC.lastbuildstate
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/Debug/CompilerIdC.tlog/link.command.1.tlog
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/Debug/CompilerIdC.tlog/link.read.1.tlog
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdC/Debug/CompilerIdC.tlog/link.write.1.tlog
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/CMakeCXXCompilerId.cpp
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/CompilerIdCXX.exe
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/CompilerIdCXX.vcxproj
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/Debug/CMakeCXXCompilerId.obj
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/Debug/CompilerIdCXX.exe.recipe
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CL.command.1.tlog
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CL.read.1.tlog
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CL.write.1.tlog
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/Debug/CompilerIdCXX.tlog/CompilerIdCXX.lastbuildstate
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/Debug/CompilerIdCXX.tlog/link.command.1.tlog
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/Debug/CompilerIdCXX.tlog/link.read.1.tlog
+assignment5/Build/CMakeFiles/3.19.0-rc1/CompilerIdCXX/Debug/CompilerIdCXX.tlog/link.write.1.tlog
+assignment5/Build/CMakeFiles/3.19.0-rc1/VCTargetsPath.txt
+assignment5/Build/CMakeFiles/3.19.0-rc1/VCTargetsPath.vcxproj
+assignment5/Build/CMakeFiles/3.19.0-rc1/x64/Debug/VCTargetsPath.recipe
+assignment5/Build/CMakeFiles/3.19.0-rc1/x64/Debug/VCTargetsPath.tlog/VCTargetsPath.lastbuildstate
+assignment5/Build/CMakeFiles/4a610f6e9d3710e91a17ca4f8ab7dbca/generate.stamp.rule
+assignment5/Build/CMakeFiles/4a610f6e9d3710e91a17ca4f8ab7dbca/INSTALL_force.rule
+assignment5/Build/CMakeFiles/5caf1ae9b178ef860f0fbc972a48654d/INSTALL_force.rule
+assignment5/Build/CMakeFiles/c421482dbdc569957ab24b48c0350b7e/INSTALL_force.rule
+assignment5/Build/CMakeFiles/cmake.check_cache
+assignment5/Build/CMakeFiles/CMakeError.log
+assignment5/Build/CMakeFiles/CMakeOutput.log
+assignment5/Build/CMakeFiles/dedf2a5de09d123203d6cd3767bfbf40/INSTALL_force.rule
+assignment5/Build/CMakeFiles/Export/share/libigl/cmake/libigl-export.cmake
+assignment5/Build/CMakeFiles/generate.stamp
+assignment5/Build/CMakeFiles/generate.stamp.depend
+assignment5/Build/CMakeFiles/generate.stamp.list
+assignment5/Build/CMakeFiles/TargetDirectories.txt
+assignment5/Build/Debug/assignment5.exe
+assignment5/Build/Debug/assignment5.ilk
+assignment5/Build/Debug/assignment5.pdb
+assignment5/Build/Debug/assignment5_test_rosenbrock.exe
+assignment5/Build/Debug/assignment5_test_rosenbrock.ilk
+assignment5/Build/Debug/assignment5_test_rosenbrock.pdb
+assignment5/Build/glad/ALL_BUILD.vcxproj
+assignment5/Build/glad/ALL_BUILD.vcxproj.filters
+assignment5/Build/glad/cmake_install.cmake
+assignment5/Build/glad/CMakeFiles/generate.stamp
+assignment5/Build/glad/CMakeFiles/generate.stamp.depend
+assignment5/Build/glad/Debug/glad.lib
+assignment5/Build/glad/Debug/glad.pdb
+assignment5/Build/glad/glad.dir/Debug/glad.lib.recipe
+assignment5/Build/glad/glad.dir/Debug/glad.obj
+assignment5/Build/glad/glad.dir/Debug/glad.pdb
+assignment5/Build/glad/glad.dir/Debug/glad.tlog/CL.command.1.tlog
+assignment5/Build/glad/glad.dir/Debug/glad.tlog/CL.read.1.tlog
+assignment5/Build/glad/glad.dir/Debug/glad.tlog/CL.write.1.tlog
+assignment5/Build/glad/glad.dir/Debug/glad.tlog/CustomBuild.command.1.tlog
+assignment5/Build/glad/glad.dir/Debug/glad.tlog/CustomBuild.read.1.tlog
+assignment5/Build/glad/glad.dir/Debug/glad.tlog/CustomBuild.write.1.tlog
+assignment5/Build/glad/glad.dir/Debug/glad.tlog/glad.lastbuildstate
+assignment5/Build/glad/glad.dir/Debug/glad.tlog/Lib-link.read.1.tlog
+assignment5/Build/glad/glad.dir/Debug/glad.tlog/Lib-link.write.1.tlog
+assignment5/Build/glad/glad.dir/Debug/glad.tlog/Lib.command.1.tlog
+assignment5/Build/glad/glad.dir/Debug/glad.vcxproj.FileListAbsolute.txt
+assignment5/Build/glad/glad.sln
+assignment5/Build/glad/glad.vcxproj
+assignment5/Build/glad/glad.vcxproj.filters
+assignment5/Build/glad/INSTALL.vcxproj
+assignment5/Build/glad/INSTALL.vcxproj.filters
+assignment5/Build/glfw/ALL_BUILD.vcxproj
+assignment5/Build/glfw/ALL_BUILD.vcxproj.filters
+assignment5/Build/glfw/cmake_install.cmake
+assignment5/Build/glfw/CMakeFiles/generate.stamp
+assignment5/Build/glfw/CMakeFiles/generate.stamp.depend
+assignment5/Build/glfw/GLFW.sln
+assignment5/Build/glfw/INSTALL.vcxproj
+assignment5/Build/glfw/INSTALL.vcxproj.filters
+assignment5/Build/glfw/src/cmake_install.cmake
+assignment5/Build/glfw/src/CMakeFiles/generate.stamp
+assignment5/Build/glfw/src/CMakeFiles/generate.stamp.depend
+assignment5/Build/glfw/src/Debug/glfw3.lib
+assignment5/Build/glfw/src/glfw.dir/Debug/context.obj
+assignment5/Build/glfw/src/glfw.dir/Debug/egl_context.obj
+assignment5/Build/glfw/src/glfw.dir/Debug/glfw.pdb
+assignment5/Build/glfw/src/glfw.dir/Debug/glfw.tlog/CL.command.1.tlog
+assignment5/Build/glfw/src/glfw.dir/Debug/glfw.tlog/CL.read.1.tlog
+assignment5/Build/glfw/src/glfw.dir/Debug/glfw.tlog/CL.write.1.tlog
+assignment5/Build/glfw/src/glfw.dir/Debug/glfw.tlog/CustomBuild.command.1.tlog
+assignment5/Build/glfw/src/glfw.dir/Debug/glfw.tlog/CustomBuild.read.1.tlog
+assignment5/Build/glfw/src/glfw.dir/Debug/glfw.tlog/CustomBuild.write.1.tlog
+assignment5/Build/glfw/src/glfw.dir/Debug/glfw.tlog/glfw.lastbuildstate
+assignment5/Build/glfw/src/glfw.dir/Debug/glfw.tlog/Lib-link.read.1.tlog
+assignment5/Build/glfw/src/glfw.dir/Debug/glfw.tlog/Lib-link.write.1.tlog
+assignment5/Build/glfw/src/glfw.dir/Debug/glfw.tlog/Lib.command.1.tlog
+assignment5/Build/glfw/src/glfw.dir/Debug/glfw3.lib.recipe
+assignment5/Build/glfw/src/glfw.dir/Debug/init.obj
+assignment5/Build/glfw/src/glfw.dir/Debug/input.obj
+assignment5/Build/glfw/src/glfw.dir/Debug/monitor.obj
+assignment5/Build/glfw/src/glfw.dir/Debug/osmesa_context.obj
+assignment5/Build/glfw/src/glfw.dir/Debug/vulkan.obj
+assignment5/Build/glfw/src/glfw.dir/Debug/wgl_context.obj
+assignment5/Build/glfw/src/glfw.dir/Debug/win32_init.obj
+assignment5/Build/glfw/src/glfw.dir/Debug/win32_joystick.obj
+assignment5/Build/glfw/src/glfw.dir/Debug/win32_monitor.obj
+assignment5/Build/glfw/src/glfw.dir/Debug/win32_thread.obj
+assignment5/Build/glfw/src/glfw.dir/Debug/win32_time.obj
+assignment5/Build/glfw/src/glfw.dir/Debug/win32_window.obj
+assignment5/Build/glfw/src/glfw.dir/Debug/window.obj
+assignment5/Build/glfw/src/glfw.vcxproj
+assignment5/Build/glfw/src/glfw.vcxproj.filters
+assignment5/Build/glfw/src/glfw3.pc
+assignment5/Build/glfw/src/glfw3Config.cmake
+assignment5/Build/glfw/src/glfw3ConfigVersion.cmake
+assignment5/Build/glfw/src/glfw_config.h
+assignment5/Build/glfw/src/INSTALL.vcxproj
+assignment5/Build/glfw/src/INSTALL.vcxproj.filters
+assignment5/Build/imgui/cmake_install.cmake
+assignment5/Build/imgui/CMakeFiles/generate.stamp
+assignment5/Build/imgui/CMakeFiles/generate.stamp.depend
+assignment5/Build/imgui/Debug/imgui.lib
+assignment5/Build/imgui/Debug/imgui.pdb
+assignment5/Build/imgui/imgui.dir/Debug/imgui.lib.recipe
+assignment5/Build/imgui/imgui.dir/Debug/imgui.obj
+assignment5/Build/imgui/imgui.dir/Debug/imgui.pdb
+assignment5/Build/imgui/imgui.dir/Debug/imgui.tlog/CL.command.1.tlog
+assignment5/Build/imgui/imgui.dir/Debug/imgui.tlog/CL.read.1.tlog
+assignment5/Build/imgui/imgui.dir/Debug/imgui.tlog/CL.write.1.tlog
+assignment5/Build/imgui/imgui.dir/Debug/imgui.tlog/CustomBuild.command.1.tlog
+assignment5/Build/imgui/imgui.dir/Debug/imgui.tlog/CustomBuild.read.1.tlog
+assignment5/Build/imgui/imgui.dir/Debug/imgui.tlog/CustomBuild.write.1.tlog
+assignment5/Build/imgui/imgui.dir/Debug/imgui.tlog/imgui.lastbuildstate
+assignment5/Build/imgui/imgui.dir/Debug/imgui.tlog/Lib-link.read.1.tlog
+assignment5/Build/imgui/imgui.dir/Debug/imgui.tlog/Lib-link.write.1.tlog
+assignment5/Build/imgui/imgui.dir/Debug/imgui.tlog/Lib.command.1.tlog
+assignment5/Build/imgui/imgui.dir/Debug/imgui.vcxproj.FileListAbsolute.txt
+assignment5/Build/imgui/imgui.dir/Debug/imgui_demo.obj
+assignment5/Build/imgui/imgui.dir/Debug/imgui_draw.obj
+assignment5/Build/imgui/imgui.dir/Debug/imgui_impl_glfw.obj
+assignment5/Build/imgui/imgui.dir/Debug/imgui_impl_opengl3.obj
+assignment5/Build/imgui/imgui.vcxproj
+assignment5/Build/imgui/imgui.vcxproj.filters
+assignment5/Build/imgui/INSTALL.vcxproj
+assignment5/Build/imgui/INSTALL.vcxproj.filters
+assignment5/Build/INSTALL.vcxproj
+assignment5/Build/INSTALL.vcxproj.filters
+assignment5/Build/libigl-config.cmake
+assignment5/Build/libigl-export.cmake
+assignment5/Build/src/femLib/ALL_BUILD.vcxproj
+assignment5/Build/src/femLib/ALL_BUILD.vcxproj.filters
+assignment5/Build/src/femLib/cmake_install.cmake
+assignment5/Build/src/femLib/CMakeFiles/generate.stamp
+assignment5/Build/src/femLib/CMakeFiles/generate.stamp.depend
+assignment5/Build/src/femLib/Debug/femLib.lib
+assignment5/Build/src/femLib/Debug/femLib.pdb
+assignment5/Build/src/femLib/femLib.dir/Debug/femLib.lib.recipe
+assignment5/Build/src/femLib/femLib.dir/Debug/femLib.pdb
+assignment5/Build/src/femLib/femLib.dir/Debug/femLib.tlog/CL.command.1.tlog
+assignment5/Build/src/femLib/femLib.dir/Debug/femLib.tlog/CL.read.1.tlog
+assignment5/Build/src/femLib/femLib.dir/Debug/femLib.tlog/CL.write.1.tlog
+assignment5/Build/src/femLib/femLib.dir/Debug/femLib.tlog/CustomBuild.command.1.tlog
+assignment5/Build/src/femLib/femLib.dir/Debug/femLib.tlog/CustomBuild.read.1.tlog
+assignment5/Build/src/femLib/femLib.dir/Debug/femLib.tlog/CustomBuild.write.1.tlog
+assignment5/Build/src/femLib/femLib.dir/Debug/femLib.tlog/femLib.lastbuildstate
+assignment5/Build/src/femLib/femLib.dir/Debug/femLib.tlog/Lib-link.read.1.tlog
+assignment5/Build/src/femLib/femLib.dir/Debug/femLib.tlog/Lib-link.write.1.tlog
+assignment5/Build/src/femLib/femLib.dir/Debug/femLib.tlog/Lib.command.1.tlog
+assignment5/Build/src/femLib/femLib.dir/Debug/femLib.vcxproj.FileListAbsolute.txt
+assignment5/Build/src/femLib/femLib.dir/Debug/SimulationMesh.obj
+assignment5/Build/src/femLib/femLib.dir/Debug/TotalEnergyFunction.obj
+assignment5/Build/src/femLib/femLib.sln
+assignment5/Build/src/femLib/femLib.vcxproj
+assignment5/Build/src/femLib/femLib.vcxproj.filters
+assignment5/Build/src/femLib/INSTALL.vcxproj
+assignment5/Build/src/femLib/INSTALL.vcxproj.filters
+assignment5/Build/src/optLib/ALL_BUILD.vcxproj
+assignment5/Build/src/optLib/ALL_BUILD.vcxproj.filters
+assignment5/Build/src/optLib/cmake_install.cmake
+assignment5/Build/src/optLib/CMakeFiles/generate.stamp
+assignment5/Build/src/optLib/CMakeFiles/generate.stamp.depend
+assignment5/Build/src/optLib/INSTALL.vcxproj
+assignment5/Build/src/optLib/INSTALL.vcxproj.filters
+assignment5/Build/src/optLib/optLib.sln
+assignment5/Build/src/optLib/optLib.vcxproj
+assignment5/Build/src/optLib/optLib.vcxproj.filters
+assignment5/Build/x64/Debug/ZERO_CHECK/ZERO_CHECK.recipe
+assignment5/Build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.command.1.tlog
+assignment5/Build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.read.1.tlog
+assignment5/Build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/CustomBuild.write.1.tlog
+assignment5/Build/x64/Debug/ZERO_CHECK/ZERO_CHECK.tlog/ZERO_CHECK.lastbuildstate
+assignment5/Build/ZERO_CHECK.vcxproj
+assignment5/Build/ZERO_CHECK.vcxproj.filters
+assignment5/out/build/x64-Debug (default)/.cmake/api/v1/query/client-MicrosoftVS/query.json
+assignment5/out/build/x64-Debug (default)/.cmake/api/v1/reply/cache-v2-5d72d0cc56c93b7f1291.json
+assignment5/out/build/x64-Debug (default)/.cmake/api/v1/reply/cmakeFiles-v1-5a6bb84a8430e0e9c235.json
+assignment5/out/build/x64-Debug (default)/.cmake/api/v1/reply/codemodel-v2-76f4ecf86e7e7f5046d7.json
+assignment5/out/build/x64-Debug (default)/.cmake/api/v1/reply/index-2021-06-16T09-59-20-0875.json
+assignment5/out/build/x64-Debug (default)/.cmake/api/v1/reply/target-assignment5-Debug-eb0101e0c3033e64145e.json
+assignment5/out/build/x64-Debug (default)/.cmake/api/v1/reply/target-assignment5_test_rosenbrock-Debug-6d58888733fafa2caaae.json
+assignment5/out/build/x64-Debug (default)/.cmake/api/v1/reply/target-femLib-Debug-bb0b73b605ab20845256.json
+assignment5/out/build/x64-Debug (default)/.cmake/api/v1/reply/target-glad-Debug-a2bc5fa18424f6ebaa37.json
+assignment5/out/build/x64-Debug (default)/.cmake/api/v1/reply/target-glfw-Debug-5fe486cca378ded9e2a5.json
+assignment5/out/build/x64-Debug (default)/.cmake/api/v1/reply/target-imgui-Debug-6a999a22ac58f8940939.json
+assignment5/out/build/x64-Debug (default)/.cmake/api/v1/reply/target-optLib-Debug-6fdd098bd258ff6c4a6d.json
+assignment5/out/build/x64-Debug (default)/build.ninja
+assignment5/out/build/x64-Debug (default)/cmake_install.cmake
+assignment5/out/build/x64-Debug (default)/CMakeCache.txt
+assignment5/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CMakeCCompiler.cmake
+assignment5/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CMakeCXXCompiler.cmake
+assignment5/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CMakeDetermineCompilerABI_C.bin
+assignment5/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CMakeDetermineCompilerABI_CXX.bin
+assignment5/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CMakeRCCompiler.cmake
+assignment5/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CMakeSystem.cmake
+assignment5/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CompilerIdC/CMakeCCompilerId.c
+assignment5/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CompilerIdC/CMakeCCompilerId.exe
+assignment5/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CompilerIdC/CMakeCCompilerId.obj
+assignment5/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.cpp
+assignment5/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.exe
+assignment5/out/build/x64-Debug (default)/CMakeFiles/3.17.20032601-MSVC_2/CompilerIdCXX/CMakeCXXCompilerId.obj
+assignment5/out/build/x64-Debug (default)/CMakeFiles/cmake.check_cache
+assignment5/out/build/x64-Debug (default)/CMakeFiles/CMakeError.log
+assignment5/out/build/x64-Debug (default)/CMakeFiles/CMakeOutput.log
+assignment5/out/build/x64-Debug (default)/CMakeFiles/Export/share/libigl/cmake/libigl-export.cmake
+assignment5/out/build/x64-Debug (default)/CMakeFiles/ShowIncludes/foo.h
+assignment5/out/build/x64-Debug (default)/CMakeFiles/ShowIncludes/main.c
+assignment5/out/build/x64-Debug (default)/CMakeFiles/ShowIncludes/main.obj
+assignment5/out/build/x64-Debug (default)/CMakeFiles/TargetDirectories.txt
+assignment5/out/build/x64-Debug (default)/glad/cmake_install.cmake
+assignment5/out/build/x64-Debug (default)/glfw/cmake_install.cmake
+assignment5/out/build/x64-Debug (default)/glfw/src/cmake_install.cmake
+assignment5/out/build/x64-Debug (default)/glfw/src/glfw3.pc
+assignment5/out/build/x64-Debug (default)/glfw/src/glfw3Config.cmake
+assignment5/out/build/x64-Debug (default)/glfw/src/glfw3ConfigVersion.cmake
+assignment5/out/build/x64-Debug (default)/glfw/src/glfw_config.h
+assignment5/out/build/x64-Debug (default)/imgui/cmake_install.cmake
+assignment5/out/build/x64-Debug (default)/libigl-config.cmake
+assignment5/out/build/x64-Debug (default)/libigl-export.cmake
+assignment5/out/build/x64-Debug (default)/rules.ninja
+assignment5/out/build/x64-Debug (default)/src/femLib/cmake_install.cmake
+assignment5/out/build/x64-Debug (default)/src/optLib/cmake_install.cmake
+assignment5/out/build/x64-Debug (default)/Testing/Temporary/LastTest.log
+assignment5/out/build/x64-Debug (default)/VSInheritEnvironments.txt
+assignment5/.vs/VSWorkspaceState.json
+assignment5/out/build/x64-Debug (default)/.ninja_deps
+assignment5/out/build/x64-Debug (default)/.ninja_log
+assignment5/out/build/x64-Debug (default)/assignment5.exe
+assignment5/out/build/x64-Debug (default)/assignment5.ilk
+assignment5/out/build/x64-Debug (default)/assignment5.pdb
+assignment5/out/build/x64-Debug (default)/assignment5_test_rosenbrock.exe
+assignment5/out/build/x64-Debug (default)/assignment5_test_rosenbrock.ilk
+assignment5/out/build/x64-Debug (default)/assignment5_test_rosenbrock.pdb
+assignment5/out/build/x64-Debug (default)/CMakeFiles/assignment5.dir/embed.manifest
+assignment5/out/build/x64-Debug (default)/CMakeFiles/assignment5.dir/intermediate.manifest
+assignment5/out/build/x64-Debug (default)/CMakeFiles/assignment5.dir/manifest.rc
+assignment5/out/build/x64-Debug (default)/CMakeFiles/assignment5.dir/manifest.res
+assignment5/out/build/x64-Debug (default)/CMakeFiles/assignment5.dir/src/gui_utils.cpp.obj
+assignment5/out/build/x64-Debug (default)/CMakeFiles/assignment5.dir/src/main.cpp.obj
+assignment5/out/build/x64-Debug (default)/CMakeFiles/assignment5.dir/vc140.pdb
+assignment5/out/build/x64-Debug (default)/CMakeFiles/assignment5_test_rosenbrock.dir/embed.manifest
+assignment5/out/build/x64-Debug (default)/CMakeFiles/assignment5_test_rosenbrock.dir/intermediate.manifest
+assignment5/out/build/x64-Debug (default)/CMakeFiles/assignment5_test_rosenbrock.dir/manifest.rc
+assignment5/out/build/x64-Debug (default)/CMakeFiles/assignment5_test_rosenbrock.dir/manifest.res
+assignment5/out/build/x64-Debug (default)/CMakeFiles/assignment5_test_rosenbrock.dir/src/test_rosenbrock.cpp.obj
+assignment5/out/build/x64-Debug (default)/CMakeFiles/assignment5_test_rosenbrock.dir/vc140.pdb
+assignment5/out/build/x64-Debug (default)/glad/CMakeFiles/glad.dir/glad.pdb
+assignment5/out/build/x64-Debug (default)/glad/CMakeFiles/glad.dir/src/glad.c.obj
+assignment5/out/build/x64-Debug (default)/glad/glad.lib
+assignment5/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/context.c.obj
+assignment5/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/egl_context.c.obj
+assignment5/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/glfw.pdb
+assignment5/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/init.c.obj
+assignment5/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/input.c.obj
+assignment5/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/monitor.c.obj
+assignment5/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/osmesa_context.c.obj
+assignment5/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/vulkan.c.obj
+assignment5/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj
+assignment5/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/win32_init.c.obj
+assignment5/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/win32_joystick.c.obj
+assignment5/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.obj
+assignment5/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.obj
+assignment5/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/win32_time.c.obj
+assignment5/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/win32_window.c.obj
+assignment5/out/build/x64-Debug (default)/glfw/src/CMakeFiles/glfw.dir/window.c.obj
+assignment5/out/build/x64-Debug (default)/glfw/src/glfw3.lib
+assignment5/out/build/x64-Debug (default)/imgui/CMakeFiles/imgui.dir/77230081b663237fb28dbe0e9a9a083e/imgui/examples/imgui_impl_glfw.cpp.obj
+assignment5/out/build/x64-Debug (default)/imgui/CMakeFiles/imgui.dir/beffdc8db186312be9cdbbedaca34aca/libigl/external/imgui/imgui.cpp.obj
+assignment5/out/build/x64-Debug (default)/imgui/CMakeFiles/imgui.dir/beffdc8db186312be9cdbbedaca34aca/libigl/external/imgui/imgui_demo.cpp.obj
+assignment5/out/build/x64-Debug (default)/imgui/CMakeFiles/imgui.dir/beffdc8db186312be9cdbbedaca34aca/libigl/external/imgui/imgui_draw.cpp.obj
+assignment5/out/build/x64-Debug (default)/imgui/CMakeFiles/imgui.dir/imgui.pdb
+assignment5/out/build/x64-Debug (default)/imgui/CMakeFiles/imgui.dir/imgui_impl_opengl3.cpp.obj
+assignment5/out/build/x64-Debug (default)/imgui/imgui.lib
+assignment5/out/build/x64-Debug (default)/src/femLib/CMakeFiles/femLib.dir/femLib.pdb
+assignment5/out/build/x64-Debug (default)/src/femLib/CMakeFiles/femLib.dir/SimulationMesh.cpp.obj
+assignment5/out/build/x64-Debug (default)/src/femLib/CMakeFiles/femLib.dir/TotalEnergyFunction.cpp.obj
+assignment5/out/build/x64-Debug (default)/src/femLib/femLib.lib

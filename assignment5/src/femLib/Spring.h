@@ -43,7 +43,18 @@ public:
 		// Vector X1 = getVertex(0, X);
 		// The spring stiffness is stored in the variable `k`.
 
-		return 0;
+		Vector2d x0 = getNodePos(0, x);
+		Vector2d X0 = getNodePos(0, X);
+
+		Vector2d x1 = getNodePos(1, x);
+		Vector2d X1 = getNodePos(1, X);
+
+		double l = (x1 - x0).norm();
+		double L = (X1 - X0).norm();
+
+		double epsilon = l / L - 1;
+
+		return 0.5 * k * pow(epsilon, 2) * L;
 	}
 
 	// Adds the gradient to `grad` given deformed `x` and undeformed `X` state
@@ -63,6 +74,25 @@ public:
 		// int globalIndex0 = getNodeIndex(0);
 		// or for node 1
 		// int globalIndex1 = getNodeIndex(1);
+
+		Vector2d x0 = getNodePos(0, x);
+		Vector2d x1 = getNodePos(1, x);
+		Vector2d X0 = getNodePos(0, X);
+		Vector2d X1 = getNodePos(1, X);
+		int i0 = getNodeIndex(0);
+		int i1 = getNodeIndex(1);
+
+		double l0 = (x1 - x0).norm();
+		double L1 = (X1 - X0).norm();
+		double eps = l0 / L1 - 1;
+
+		Vector2d f0 = -k * eps * (x1 - x0) / l0;
+		Vector2d f1 = -f0;
+
+		grad(i0 * 2) += f0(0);
+		grad(i0 * 2 + 1) += f0(1);
+		grad(i1 * 2) += f1(0);
+		grad(i1 * 2 + 1) += f1(1);
 	}
 
 	// Adds the hessian entries to `hesEntries` given deformed `x` and undeformed `X` state
@@ -71,6 +101,38 @@ public:
 		// Ex 1.4
 		// Task: Given `x` and `X`, add the hessian of the spring energy to `hesEntries`.
 
+		Vector2d x0 = getNodePos(0, x);
+		Vector2d x1 = getNodePos(1, x);
+		Vector2d X0 = getNodePos(0, X);
+		Vector2d X1 = getNodePos(1, X);
+		int i0 = getNodeIndex(0);
+		int i1 = getNodeIndex(1);
+		Vector2d v = x1 - x0;
+		double l0 = (x1 - x0).norm();
+		double L1 = (X1 - X0).norm();
+		double eps = l0 / L1 - 1;
+		MatrixXd H;
+		H.resize(2, 2);
+
+
+		H = -k * (1 / L1 * (v * v.transpose()) / (v.transpose() * v) + eps / l0 * (MatrixXd::Identity(2, 2) - (v * v.transpose()) / (v.transpose() * v)));
+
+		hesEntries.push_back(Tripletd(i0 * 2 + 0, i0 * 2 + 0, -H(0, 0)));
+		hesEntries.push_back(Tripletd(i0 * 2 + 0, i0 * 2 + 1, -H(0, 1)));
+		hesEntries.push_back(Tripletd(i0 * 2 + 1, i0 * 2 + 0, -H(1, 0)));
+		hesEntries.push_back(Tripletd(i0 * 2 + 1, i0 * 2 + 1, -H(1, 1)));
+		hesEntries.push_back(Tripletd(i0 * 2 + 0, i1 * 2 + 0, H(0, 0)));
+		hesEntries.push_back(Tripletd(i0 * 2 + 0, i1 * 2 + 1, H(0, 1)));
+		hesEntries.push_back(Tripletd(i0 * 2 + 1, i1 * 2 + 0, H(1, 0)));
+		hesEntries.push_back(Tripletd(i0 * 2 + 1, i1 * 2 + 1, H(1, 1)));
+		hesEntries.push_back(Tripletd(i1 * 2 + 0, i0 * 2 + 0, H(0, 0)));
+		hesEntries.push_back(Tripletd(i1 * 2 + 0, i0 * 2 + 1, H(0, 1)));
+		hesEntries.push_back(Tripletd(i1 * 2 + 1, i0 * 2 + 0, H(1, 0)));
+		hesEntries.push_back(Tripletd(i1 * 2 + 1, i0 * 2 + 1, H(1, 1)));
+		hesEntries.push_back(Tripletd(i1 * 2 + 0, i1 * 2 + 0, -H(0, 0)));
+		hesEntries.push_back(Tripletd(i1 * 2 + 0, i1 * 2 + 1, -H(0, 1)));
+		hesEntries.push_back(Tripletd(i1 * 2 + 1, i1 * 2 + 0, -H(1, 0)));
+		hesEntries.push_back(Tripletd(i1 * 2 + 1, i1 * 2 + 1, -H(1, 1)));
 	}
 
 protected:

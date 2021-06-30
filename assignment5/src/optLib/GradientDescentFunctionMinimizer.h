@@ -55,14 +55,26 @@ protected:
 	virtual void computeSearchDirection(ObjectiveFunction *function, const VectorXd &x, VectorXd& dx) {
 
 		// Ex. 1.1
-
+		dx.setZero();
+		function->addGradientTo(dx, x);
 	}
 
 	virtual void doLineSearch(ObjectiveFunction *function, const VectorXd& dx, VectorXd& xi)
 	{
 
 		// Ex. 1.1
+		double a = 1.0;
+		double b = 0.5;
+		int i = 0;
+		double newEnergy = function->computeValue(xi - a * dx);
+		double prevEnergy = function->computeValue(xi);
 
+		while ((newEnergy > prevEnergy && i < maxLineSearchIterations) || !isfinite(newEnergy)) {
+			a *= b;
+			i++;
+			newEnergy = function->computeValue(xi - a * dx);
+		}
+		xi = xi - (a * dx);
 	}
 
 protected:

@@ -23,7 +23,16 @@ protected:
 	virtual void computeSearchDirection(ObjectiveFunction *function, const VectorXd &x, VectorXd& dx) {
 
 		// Ex 1.3
+		hessianEntries.clear();
+		function->addHessianEntriesTo(hessianEntries, x);
+		VectorXd g = dx;
+		g.setZero();
+		function->addGradientTo(g, x);
+		H.resize(dx.rows(), dx.rows());
+		H.setFromTriplets(hessianEntries.begin(), hessianEntries.end());
 
+		Eigen::SimplicialLDLT<Eigen::SparseMatrix <double>> solver(H);
+		dx = solver.solve(g);
 	}
 
 public:
